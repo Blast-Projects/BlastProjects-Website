@@ -5,27 +5,38 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import type { Project } from "@shared/schema";
 
-const projects: Project[] = [
+import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
+import roxysBeautyLabLogo from "@assets/57FB4895-AA27-4B1B-8DD6-1F40EC2F6D3F_1769723626732.PNG";
+import vibezLogo from "@assets/6797076_Main_Logo_1769723619802.png";
+
+interface ProjectWithLogo extends Project {
+  logo: string;
+}
+
+const projects: ProjectWithLogo[] = [
   {
     id: "1",
-    title: "SnapTapSync",
+    title: "SnapTagSync",
     description: "A powerful synchronization app that seamlessly connects your photos across all devices. Real-time backup, smart organization, and instant sharing capabilities.",
     tags: ["Mobile App", "Cloud Sync", "Photo Management"],
-    gradient: "from-violet-500/20 via-purple-500/20 to-fuchsia-500/20",
+    gradient: "from-cyan-500/20 via-blue-500/20 to-blue-600/20",
+    logo: snapTagSyncLogo,
   },
   {
     id: "2",
     title: "Roxy's Beauty Lab",
     description: "Complete salon management system with online booking, client management, inventory tracking, and integrated payment processing for beauty professionals.",
     tags: ["E-Commerce", "Booking System", "Payments"],
-    gradient: "from-pink-500/20 via-rose-500/20 to-red-500/20",
+    gradient: "from-amber-500/20 via-yellow-400/20 to-orange-400/20",
+    logo: roxysBeautyLabLogo,
   },
   {
     id: "3",
     title: "Vibez",
     description: "Social entertainment platform connecting people through shared music experiences. Playlist sharing, live listening sessions, and event coordination.",
     tags: ["Social App", "Music Streaming", "Real-time"],
-    gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
+    gradient: "from-orange-500/20 via-orange-400/20 to-yellow-500/20",
+    logo: vibezLogo,
   },
 ];
 
@@ -94,6 +105,16 @@ export function Projects() {
                 <div className={`absolute inset-0 rounded-lg bg-gradient-to-br ${project.gradient} opacity-50 transition-opacity duration-300 group-hover:opacity-70`} />
                 
                 <div className="relative p-6">
+                  {/* Logo */}
+                  <div className="mb-6 flex h-16 items-center justify-center">
+                    <img 
+                      src={project.logo} 
+                      alt={`${project.title} logo`}
+                      className="h-full max-h-16 w-auto object-contain"
+                      data-testid={`img-project-logo-${project.id}`}
+                    />
+                  </div>
+
                   <div className="mb-4 flex items-start justify-between gap-2">
                     <h3 className="text-xl font-semibold" data-testid={`text-project-title-${project.id}`}>{project.title}</h3>
                     <div className="rounded-full border border-border/50 p-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:border-accent/50">
