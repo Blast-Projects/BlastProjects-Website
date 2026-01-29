@@ -1,7 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "wouter";
 import type { Project } from "@shared/schema";
 
 import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
@@ -11,11 +12,13 @@ import vibezLogo from "@assets/6797076_Main_Logo_1769723619802.png";
 interface ProjectWithLogo extends Project {
   logo: string;
   logoSize: string;
+  slug: string;
 }
 
 const projects: ProjectWithLogo[] = [
   {
     id: "1",
+    slug: "snaptagsync",
     title: "SnapTagSync",
     description: "A powerful synchronization app that seamlessly connects your photos across all devices. Real-time backup, smart organization, and instant sharing capabilities.",
     tags: ["Mobile App", "Cloud Sync", "Photo Management"],
@@ -25,6 +28,7 @@ const projects: ProjectWithLogo[] = [
   },
   {
     id: "2",
+    slug: "roxys-beauty-lab",
     title: "Roxy's Beauty Lab",
     description: "Complete salon management system with online booking, client management, inventory tracking, and integrated payment processing for beauty professionals.",
     tags: ["E-Commerce", "Booking System", "Payments"],
@@ -34,6 +38,7 @@ const projects: ProjectWithLogo[] = [
   },
   {
     id: "3",
+    slug: "vibez",
     title: "Vibez",
     description: "Social entertainment platform connecting people through shared music experiences. Playlist sharing, live listening sessions, and event coordination.",
     tags: ["Social App", "Music Streaming", "Real-time"],
@@ -101,69 +106,71 @@ export function Projects() {
         >
           {projects.map((project) => (
             <motion.div key={project.id} variants={itemVariants}>
-              <div 
-                className="group relative h-full"
-                data-testid={`card-project-${project.id}`}
-              >
-                {/* Subtle glowing background effect */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-40`} />
-                
-                {/* Glass card */}
-                <div className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+              <Link href={`/projects/${project.slug}`}>
+                <div 
+                  className="group relative h-full cursor-pointer"
+                  data-testid={`card-project-${project.id}`}
+                >
+                  {/* Subtle glowing background effect */}
+                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-40`} />
                   
-                  {/* Logo container with floating effect */}
-                  <div className="mb-8 flex h-24 items-center justify-center">
-                    <motion.div
-                      className="relative"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      {/* Logo glow effect */}
-                      <div className="absolute inset-0 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-30">
+                  {/* Glass card */}
+                  <div className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/10">
+                    
+                    {/* Logo container with floating effect */}
+                    <div className="mb-8 flex h-24 items-center justify-center">
+                      <motion.div
+                        className="relative"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        {/* Logo glow effect */}
+                        <div className="absolute inset-0 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-30">
+                          <img 
+                            src={project.logo} 
+                            alt=""
+                            className={`${project.logoSize} w-auto object-contain`}
+                            aria-hidden="true"
+                          />
+                        </div>
                         <img 
                           src={project.logo} 
-                          alt=""
-                          className={`${project.logoSize} w-auto object-contain`}
-                          aria-hidden="true"
+                          alt={`${project.title} logo`}
+                          className={`relative ${project.logoSize} w-auto object-contain drop-shadow-lg`}
+                          data-testid={`img-project-logo-${project.id}`}
                         />
-                      </div>
-                      <img 
-                        src={project.logo} 
-                        alt={`${project.title} logo`}
-                        className={`relative ${project.logoSize} w-auto object-contain drop-shadow-lg`}
-                        data-testid={`img-project-logo-${project.id}`}
-                      />
-                    </motion.div>
-                  </div>
+                      </motion.div>
+                    </div>
 
-                  <div className="mb-3 flex items-start justify-between gap-2">
-                    <h3 className="text-xl font-semibold" data-testid={`text-project-title-${project.id}`}>{project.title}</h3>
-                    <motion.div 
-                      className="rounded-full border border-white/10 p-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:border-accent/50"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <ExternalLink size={14} className="text-accent" />
-                    </motion.div>
-                  </div>
-                  
-                  <p className="mb-6 text-sm leading-relaxed text-muted-foreground" data-testid={`text-project-description-${project.id}`}>
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge 
-                        key={tag} 
-                        variant="secondary"
-                        className="border-white/10 bg-white/5 text-xs backdrop-blur-sm"
-                        data-testid={`badge-tag-${project.id}-${tag.toLowerCase().replace(/\s/g, "-")}`}
+                    <div className="mb-3 flex items-start justify-between gap-2">
+                      <h3 className="text-xl font-semibold" data-testid={`text-project-title-${project.id}`}>{project.title}</h3>
+                      <motion.div 
+                        className="rounded-full border border-white/10 p-2 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:border-accent/50"
+                        whileHover={{ scale: 1.1 }}
                       >
-                        {tag}
-                      </Badge>
-                    ))}
+                        <ArrowRight size={14} className="text-accent" />
+                      </motion.div>
+                    </div>
+                    
+                    <p className="mb-6 text-sm leading-relaxed text-muted-foreground" data-testid={`text-project-description-${project.id}`}>
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <Badge 
+                          key={tag} 
+                          variant="secondary"
+                          className="border-white/10 bg-white/5 text-xs backdrop-blur-sm"
+                          data-testid={`badge-tag-${project.id}-${tag.toLowerCase().replace(/\s/g, "-")}`}
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
