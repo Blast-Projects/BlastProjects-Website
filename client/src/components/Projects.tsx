@@ -3,14 +3,17 @@ import { ArrowRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "wouter";
+import { useTheme } from "@/components/ThemeProvider";
 import type { Project } from "@shared/schema";
 
-import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
+import snapTagSyncLogoDark from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
+import snapTagSyncLogoLight from "@assets/SnapTagSync-Logo-BlackSNAP-TransparentBackground.png_1769729379764.png";
 import roxysBeautyLabLogo from "@assets/57FB4895-AA27-4B1B-8DD6-1F40EC2F6D3F_1769723626732.PNG";
 import vibezLogo from "@assets/6797076_Main_Logo_1769723619802.png";
 
 interface ProjectWithLogo extends Project {
-  logo: string;
+  logoDark: string;
+  logoLight: string;
   logoSize: string;
   slug: string;
 }
@@ -23,7 +26,8 @@ const projects: ProjectWithLogo[] = [
     description: "A powerful synchronization app that seamlessly connects your photos across all devices. Real-time backup, smart organization, and instant sharing capabilities.",
     tags: ["Mobile App", "Cloud Sync", "Photo Management"],
     gradient: "from-cyan-500/30 via-blue-500/20 to-blue-600/30",
-    logo: snapTagSyncLogo,
+    logoDark: snapTagSyncLogoDark,
+    logoLight: snapTagSyncLogoLight,
     logoSize: "h-10",
   },
   {
@@ -33,7 +37,8 @@ const projects: ProjectWithLogo[] = [
     description: "Complete salon management system with online booking, client management, inventory tracking, and integrated payment processing for beauty professionals.",
     tags: ["E-Commerce", "Booking System", "Payments"],
     gradient: "from-amber-500/30 via-yellow-400/20 to-orange-400/30",
-    logo: roxysBeautyLabLogo,
+    logoDark: roxysBeautyLabLogo,
+    logoLight: roxysBeautyLabLogo,
     logoSize: "h-28",
   },
   {
@@ -43,7 +48,8 @@ const projects: ProjectWithLogo[] = [
     description: "Social entertainment platform connecting people through shared music experiences. Playlist sharing, live listening sessions, and event coordination.",
     tags: ["Social App", "Music Streaming", "Real-time"],
     gradient: "from-orange-500/30 via-orange-400/20 to-yellow-500/30",
-    logo: vibezLogo,
+    logoDark: vibezLogo,
+    logoLight: vibezLogo,
     logoSize: "h-14",
   },
 ];
@@ -73,6 +79,7 @@ const itemVariants = {
 export function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { theme } = useTheme();
 
   return (
     <section id="projects" className="relative py-24 md:py-32">
@@ -127,14 +134,14 @@ export function Projects() {
                         {/* Logo glow effect */}
                         <div className="absolute inset-0 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-30">
                           <img 
-                            src={project.logo} 
+                            src={theme === "dark" ? project.logoDark : project.logoLight} 
                             alt=""
                             className={`${project.logoSize} w-auto object-contain`}
                             aria-hidden="true"
                           />
                         </div>
                         <img 
-                          src={project.logo} 
+                          src={theme === "dark" ? project.logoDark : project.logoLight} 
                           alt={`${project.title} logo`}
                           className={`relative ${project.logoSize} w-auto object-contain drop-shadow-lg`}
                           data-testid={`img-project-logo-${project.id}`}

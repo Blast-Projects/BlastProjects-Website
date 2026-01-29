@@ -5,7 +5,10 @@ import { Card } from "@/components/ui/card";
 import { ArrowLeft, CheckCircle2, Code2, Calendar, ExternalLink, Globe, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
-import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
+import { useTheme } from "@/components/ThemeProvider";
+
+import snapTagSyncLogoDark from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
+import snapTagSyncLogoLight from "@assets/SnapTagSync-Logo-BlackSNAP-TransparentBackground.png_1769729379764.png";
 import roxysBeautyLabLogo from "@assets/57FB4895-AA27-4B1B-8DD6-1F40EC2F6D3F_1769723626732.PNG";
 import vibezLogo from "@assets/6797076_Main_Logo_1769723619802.png";
 
@@ -22,7 +25,8 @@ interface ProjectDetail {
   features: string[];
   techStack: string[];
   timeline: string;
-  logo: string;
+  logoDark: string;
+  logoLight: string;
   logoSize: string;
   gradient: string;
 }
@@ -53,7 +57,8 @@ const projectsData: ProjectDetail[] = [
     ],
     techStack: ["React Native", "Node.js", "AWS S3", "TensorFlow", "PostgreSQL"],
     timeline: "Q1 2026 Launch",
-    logo: snapTagSyncLogo,
+    logoDark: snapTagSyncLogoDark,
+    logoLight: snapTagSyncLogoLight,
     logoSize: "h-16",
     gradient: "from-cyan-500/20 via-blue-500/10 to-blue-600/20",
   },
@@ -83,7 +88,8 @@ const projectsData: ProjectDetail[] = [
     ],
     techStack: ["Next.js", "Stripe", "Twilio", "PostgreSQL", "Vercel"],
     timeline: "Launched 2025",
-    logo: roxysBeautyLabLogo,
+    logoDark: roxysBeautyLabLogo,
+    logoLight: roxysBeautyLabLogo,
     logoSize: "h-32",
     gradient: "from-amber-500/20 via-yellow-400/10 to-orange-400/20",
   },
@@ -112,7 +118,8 @@ const projectsData: ProjectDetail[] = [
     ],
     techStack: ["React Native", "Firebase", "Node.js", "Google Maps API", "Push Notifications"],
     timeline: "Q3 2026 Beta",
-    logo: vibezLogo,
+    logoDark: vibezLogo,
+    logoLight: vibezLogo,
     logoSize: "h-20",
     gradient: "from-orange-500/20 via-orange-400/10 to-yellow-500/20",
   },
@@ -120,6 +127,7 @@ const projectsData: ProjectDetail[] = [
 
 export default function ProjectDetail() {
   const params = useParams();
+  const { theme } = useTheme();
   const project = projectsData.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -177,7 +185,7 @@ export default function ProjectDetail() {
                   <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-2">Products</p>
                   <div className="flex items-center gap-4">
                     <img 
-                      src={project.logo} 
+                      src={theme === "dark" ? project.logoDark : project.logoLight} 
                       alt={`${project.title} logo`}
                       className={`${project.logoSize} w-auto object-contain`}
                       data-testid="img-project-logo"
