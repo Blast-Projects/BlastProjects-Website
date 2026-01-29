@@ -17,6 +17,34 @@ export function Hero() {
         {/* Base dark gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
         
+        {/* Option 2: Subtle gradient from top corners */}
+        <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-purple-900/20 blur-[100px]" />
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet-900/15 blur-[80px]" />
+        
+        {/* Option 3: Floating particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute h-1 w-1 rounded-full bg-purple-400/30"
+              style={{
+                left: `${10 + (i * 4.5)}%`,
+                top: `${5 + (i * 3.2) % 40}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 4 + (i % 3),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+        </div>
+        
         {/* Animated diagonal stripes - positioned lower and more subtle */}
         <div className="absolute inset-0 opacity-60">
           <motion.div 
