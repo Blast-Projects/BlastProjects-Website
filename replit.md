@@ -1,70 +1,60 @@
-# Dev Studio
+# Dev Studio - Professional Portfolio Website
 
 ## Overview
+A professional portfolio website for showcasing app development services and training programs. Built with a sleek, dark theme inspired by Linear and Raycast design aesthetics.
 
-Dev Studio is a professional services website for an app development agency. It's a full-stack web application featuring a marketing landing page with sections for projects, services, training programs, and pricing. The site includes a contact form that submits to a backend API with PostgreSQL storage.
+## Project Structure
+```
+client/
+├── src/
+│   ├── components/       # React components
+│   │   ├── Header.tsx    # Fixed navigation header with theme toggle
+│   │   ├── Hero.tsx      # Hero section with stats
+│   │   ├── Projects.tsx  # Project showcase cards
+│   │   ├── Services.tsx  # Service offerings with process steps
+│   │   ├── Training.tsx  # Training program details
+│   │   ├── Pricing.tsx   # Pricing tiers
+│   │   ├── Contact.tsx   # Contact form
+│   │   ├── Footer.tsx    # Site footer
+│   │   ├── ThemeProvider.tsx  # Dark/light theme context
+│   │   └── ThemeToggle.tsx    # Theme toggle button
+│   ├── pages/
+│   │   └── Home.tsx      # Main landing page
+│   └── index.css         # Global styles with theme variables
+server/
+├── routes.ts             # API routes (contact form)
+└── storage.ts            # In-memory storage for contact submissions
+shared/
+└── schema.ts             # TypeScript types and Zod schemas
+```
 
-## User Preferences
+## Key Features
+- **Projects Section**: Showcases SnapTapSync, Roxy's Beauty Lab, and Vibez
+- **Services**: MVP Development, Full App Build, Enterprise Solutions
+- **Training Program**: 8-week bootcamp covering app building from scratch
+- **Pricing**: Transparent pricing tiers (Starter, Professional, Business)
+- **Contact Form**: Functional form with validation and API integration
+- **Dark/Light Theme**: Toggle between themes with persistence
 
-Preferred communication style: Simple, everyday language.
+## Tech Stack
+- React with TypeScript
+- Vite for bundling
+- Tailwind CSS for styling
+- Shadcn/ui for components
+- React Query for data fetching
+- Express.js backend
+- In-memory storage
 
-## System Architecture
+## Design
+- Dark theme by default (Linear/Raycast inspired)
+- Purple accent color (#8B5CF6)
+- Inter font family
+- Smooth scroll navigation
+- Responsive design for all screen sizes
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript
-- **Routing**: Wouter (lightweight React router)
-- **Styling**: Tailwind CSS with CSS variables for theming (dark/light mode support)
-- **Component Library**: shadcn/ui components built on Radix UI primitives
-- **State Management**: TanStack React Query for server state
-- **Form Handling**: React Hook Form with Zod validation
-- **Build Tool**: Vite with HMR support
+## API Endpoints
+- `POST /api/contact` - Submit contact form
+- `GET /api/contact` - Get all contact submissions
 
-The frontend is a single-page application with smooth-scroll navigation between sections (Hero, Projects, Services, Training, Pricing, Contact). All UI components follow the shadcn/ui pattern with customizable variants.
-
-### Backend Architecture
-- **Framework**: Express.js 5 on Node.js
-- **Language**: TypeScript with ESM modules
-- **API Design**: RESTful endpoints under `/api/*` prefix
-- **Development**: Vite middleware integration for HMR during development
-- **Production**: Static file serving from built assets
-
-### Data Storage
-- **ORM**: Drizzle ORM with PostgreSQL dialect
-- **Schema Location**: `shared/schema.ts` (shared between frontend and backend)
-- **Migrations**: Drizzle Kit with `db:push` command
-- **Current Storage**: In-memory storage class (`MemStorage`) that implements `IStorage` interface - designed for easy swap to database storage
-
-### Schema Design
-- **users**: Basic user table with id, username, password
-- **contactSubmissions**: Contact form entries with name, email, subject, message, createdAt
-
-### Build System
-- **Client Build**: Vite outputs to `dist/public`
-- **Server Build**: esbuild bundles server code to `dist/index.cjs`
-- **Optimization**: Common dependencies are bundled to reduce cold start times
-
-## External Dependencies
-
-### UI Libraries
-- Radix UI (comprehensive primitive components)
-- Lucide React (icons)
-- React Icons (additional icon sets)
-- class-variance-authority (component variants)
-- embla-carousel-react (carousels)
-- cmdk (command palette)
-- vaul (drawer component)
-- react-day-picker (calendar)
-- recharts (charts)
-
-### Backend Dependencies
-- express-session with connect-pg-simple (session management)
-- drizzle-orm with drizzle-zod (database and validation)
-- zod (schema validation)
-
-### Database
-- PostgreSQL (configured via `DATABASE_URL` environment variable)
-- Drizzle Kit for migrations
-
-### Development Tools
-- Replit-specific Vite plugins (error overlay, cartographer, dev banner)
-- tsx for TypeScript execution
+## Running the App
+The app runs on port 5000 with `npm run dev`

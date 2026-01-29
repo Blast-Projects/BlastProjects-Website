@@ -8,7 +8,24 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const pricingTiers = [
+interface PricingFeature {
+  text: string;
+  included: boolean;
+  tooltip?: string;
+}
+
+interface PricingTier {
+  name: string;
+  description: string;
+  price: string;
+  period: string;
+  popular?: boolean;
+  features: PricingFeature[];
+  cta: string;
+  variant: "default" | "outline";
+}
+
+const pricingTiers: PricingTier[] = [
   {
     name: "Starter",
     description: "Perfect for small projects and MVPs",
@@ -175,14 +192,13 @@ export function Pricing() {
         <div className="mt-16 text-center">
           <p className="text-muted-foreground">
             Need something custom?{" "}
-            <Button 
-              variant="link" 
-              className="h-auto p-0 text-accent" 
+            <button 
+              className="text-accent underline underline-offset-4 hover:text-accent/80" 
               onClick={scrollToContact} 
               data-testid="link-custom-quote"
             >
               Get a custom quote
-            </Button>
+            </button>
           </p>
         </div>
       </div>
