@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, CheckCircle2, Code2, Calendar } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Code2, Calendar, ExternalLink, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 
 import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
@@ -14,6 +14,7 @@ interface ProjectDetail {
   slug: string;
   title: string;
   status: "Live" | "Coming Soon" | "In Development";
+  url?: string;
   overview: string;
   problem: string;
   solution: string;
@@ -31,6 +32,7 @@ const projectsData: ProjectDetail[] = [
     slug: "snaptagsync",
     title: "SnapTagSync",
     status: "Live",
+    url: "https://snaptagsync.com",
     overview: "SnapTagSync is a powerful photo synchronization and management app designed for photographers and everyday users who want their memories accessible everywhere. It seamlessly connects all your devices with real-time backup and intelligent organization.",
     problem: "Managing photos across multiple devices is a nightmare. People lose precious memories when phones break, storage fills up, or they can't find that one photo from years ago. Existing solutions are either too expensive, too complicated, or don't work reliably.",
     solution: "SnapTagSync provides effortless, real-time photo syncing across all devices with smart AI tagging that makes finding any photo instant. One tap backup, intelligent albums, and sharing that just works - without the monthly subscription trap.",
@@ -53,6 +55,7 @@ const projectsData: ProjectDetail[] = [
     slug: "roxys-beauty-lab",
     title: "Roxy's Beauty Lab",
     status: "Live",
+    url: "https://roxysbeautylab.com",
     overview: "Roxy's Beauty Lab is a complete salon management platform built specifically for beauty professionals. From online booking to payment processing, inventory management to client relationships - everything a modern salon needs in one beautiful interface.",
     problem: "Running a beauty business means juggling appointments, inventory, payments, and client relationships - usually with a mix of paper calendars, text messages, and separate payment apps. It's chaotic, unprofessional, and loses money.",
     solution: "A single platform that handles everything: clients book online 24/7, automatic reminders reduce no-shows, inventory tracks itself, payments process instantly, and beautiful analytics show what's working. Built by beauty pros, for beauty pros.",
@@ -75,6 +78,7 @@ const projectsData: ProjectDetail[] = [
     slug: "vibez",
     title: "Vibez",
     status: "Coming Soon",
+    url: "https://vibez.app",
     overview: "Vibez is a social event discovery app that helps users find local happenings and coordinate attendance with friends. It combines event discovery with social coordination in a seamless mobile experience.",
     problem: "Finding out what's happening locally is fragmented across dozens of apps, social media, and word of mouth. Coordinating with friends about which events to attend involves endless group chats and confusion.",
     solution: "Vibez aggregates local events into one beautiful feed, lets you see which friends are interested or going, and provides simple coordination tools. No more 'are you going?' texts - just tap to show interest and see who else is in.",
@@ -241,11 +245,37 @@ export default function ProjectDetail() {
               </Card>
             </motion.div>
 
+            {/* Website URL */}
+            {project.url && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Card className="border-border/50 bg-card/50 backdrop-blur-sm p-6" data-testid="card-url">
+                  <div className="mb-2 flex items-center gap-2">
+                    <Globe size={18} className="text-accent" />
+                    <h3 className="font-semibold uppercase tracking-wider text-sm">Website</h3>
+                  </div>
+                  <a 
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-accent hover:underline"
+                    data-testid="link-project-url"
+                  >
+                    {project.url.replace('https://', '')}
+                    <ExternalLink size={14} />
+                  </a>
+                </Card>
+              </motion.div>
+            )}
+
             {/* Timeline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Card className="border-border/50 bg-card/50 backdrop-blur-sm p-6" data-testid="card-timeline">
                 <div className="mb-2 flex items-center gap-2">
@@ -260,7 +290,7 @@ export default function ProjectDetail() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Card className="border-accent/20 bg-accent/5 backdrop-blur-sm p-6 text-center" data-testid="card-cta">
                 <p className="mb-4 text-sm text-muted-foreground">Want to build something like this?</p>
