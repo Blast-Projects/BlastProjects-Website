@@ -52,6 +52,13 @@ shared/
 - Smooth scroll navigation
 - Responsive design for all screen sizes
 
+### Animation System (Framer Motion)
+- Hero: Raycast-style animated diagonal gradient stripes with pulsing glow orbs
+- Scroll reveals: All sections animate in on scroll using `useInView`
+- Staggered cards: Project/service cards animate in with stagger timing
+- Interactive elements: Cards have hover lift effects, buttons have built-in elevations
+- Ambient backgrounds: Blurred gradient orbs throughout for depth
+
 ## API Endpoints
 - `POST /api/contact` - Submit contact form
 - `GET /api/contact` - Get all contact submissions
