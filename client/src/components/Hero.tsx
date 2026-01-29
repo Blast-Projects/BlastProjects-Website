@@ -11,7 +11,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-24">
+    <section className="relative min-h-screen overflow-hidden pt-16">
       {/* Raycast-style diagonal gradient background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Base dark gradient */}
@@ -133,7 +133,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-24 text-center md:py-32 lg:py-40">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-16 text-center md:py-20 lg:py-24">
         <motion.div 
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/50 px-4 py-2 text-sm backdrop-blur-sm"
           initial={{ opacity: 0, y: 20 }}
