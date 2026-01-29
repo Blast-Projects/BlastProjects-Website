@@ -30,7 +30,7 @@ const projects: ProjectWithLogo[] = [
     tags: ["E-Commerce", "Booking System", "Payments"],
     gradient: "from-amber-500/30 via-yellow-400/20 to-orange-400/30",
     logo: roxysBeautyLabLogo,
-    logoSize: "h-20",
+    logoSize: "h-28",
   },
   {
     id: "3",
@@ -105,8 +105,8 @@ export function Projects() {
                 className="group relative h-full"
                 data-testid={`card-project-${project.id}`}
               >
-                {/* Glowing background effect */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100`} />
+                {/* Subtle glowing background effect */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-40`} />
                 
                 {/* Glass card */}
                 <div className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/10">
@@ -119,7 +119,7 @@ export function Projects() {
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
                       {/* Logo glow effect */}
-                      <div className="absolute inset-0 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-50">
+                      <div className="absolute inset-0 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-30">
                         <img 
                           src={project.logo} 
                           alt=""
