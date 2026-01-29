@@ -2,7 +2,7 @@ import { useParams, Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, CheckCircle2, Code2, Calendar, ExternalLink, Globe } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Code2, Calendar, ExternalLink, Globe, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
@@ -18,6 +18,7 @@ interface ProjectDetail {
   overview: string;
   problem: string;
   solution: string;
+  results?: string[];
   features: string[];
   techStack: string[];
   timeline: string;
@@ -36,6 +37,12 @@ const projectsData: ProjectDetail[] = [
     overview: "SnapTagSync is a powerful photo synchronization and management app designed for photographers and everyday users who want their memories accessible everywhere. It seamlessly connects all your devices with real-time backup and intelligent organization.",
     problem: "Managing photos across multiple devices is a nightmare. People lose precious memories when phones break, storage fills up, or they can't find that one photo from years ago. Existing solutions are either too expensive, too complicated, or don't work reliably.",
     solution: "SnapTagSync provides effortless, real-time photo syncing across all devices with smart AI tagging that makes finding any photo instant. One tap backup, intelligent albums, and sharing that just works - without the monthly subscription trap.",
+    results: [
+      "Replaced iCloud and Google Photos subscriptions",
+      "Saved users $120+/year on storage fees",
+      "10,000+ photos synced in first month",
+      "Zero photos lost during device transitions",
+    ],
     features: [
       "Real-time sync across unlimited devices",
       "AI-powered photo tagging and search",
@@ -59,6 +66,13 @@ const projectsData: ProjectDetail[] = [
     overview: "Roxy's Beauty Lab is a complete salon management platform built specifically for beauty professionals. From online booking to payment processing, inventory management to client relationships - everything a modern salon needs in one beautiful interface.",
     problem: "Running a beauty business means juggling appointments, inventory, payments, and client relationships - usually with a mix of paper calendars, text messages, and separate payment apps. It's chaotic, unprofessional, and loses money.",
     solution: "A single platform that handles everything: clients book online 24/7, automatic reminders reduce no-shows, inventory tracks itself, payments process instantly, and beautiful analytics show what's working. Built by beauty pros, for beauty pros.",
+    results: [
+      "Eliminated Square subscription ($60/month saved)",
+      "Eliminated Calendly subscription ($20/month saved)",
+      "Reduced no-shows by 40% with auto-reminders",
+      "One platform replaced 4 separate tools",
+      "Saves 5+ hours/week on admin tasks",
+    ],
     features: [
       "Online booking with automatic reminders",
       "Client management and history",
@@ -82,6 +96,12 @@ const projectsData: ProjectDetail[] = [
     overview: "Vibez is a social event discovery app that helps users find local happenings and coordinate attendance with friends. It combines event discovery with social coordination in a seamless mobile experience.",
     problem: "Finding out what's happening locally is fragmented across dozens of apps, social media, and word of mouth. Coordinating with friends about which events to attend involves endless group chats and confusion.",
     solution: "Vibez aggregates local events into one beautiful feed, lets you see which friends are interested or going, and provides simple coordination tools. No more 'are you going?' texts - just tap to show interest and see who else is in.",
+    results: [
+      "Replaces Eventbrite, Facebook Events, and group chats",
+      "One app instead of checking 5+ platforms",
+      "No more missed events from friends",
+      "Simplified group coordination in one tap",
+    ],
     features: [
       "Curated local event discovery",
       "Friend activity feed",
@@ -188,10 +208,28 @@ export default function ProjectDetail() {
               </div>
 
               {/* The Solution */}
-              <div>
+              <div className="mb-8">
                 <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground" data-testid="text-solution-label">The Solution</h2>
                 <p className="text-foreground/90 leading-relaxed" data-testid="text-solution">{project.solution}</p>
               </div>
+
+              {/* The Results */}
+              {project.results && project.results.length > 0 && (
+                <div className="rounded-xl border border-green-500/20 bg-green-500/5 p-6">
+                  <div className="mb-4 flex items-center gap-2">
+                    <TrendingUp size={18} className="text-green-400" />
+                    <h2 className="text-sm font-semibold uppercase tracking-wider text-green-400" data-testid="text-results-label">The Results</h2>
+                  </div>
+                  <ul className="space-y-2">
+                    {project.results.map((result, index) => (
+                      <li key={index} className="flex items-start gap-2" data-testid={`text-result-${index}`}>
+                        <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-green-400" />
+                        <span className="text-foreground/90">{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </Card>
           </motion.div>
 
