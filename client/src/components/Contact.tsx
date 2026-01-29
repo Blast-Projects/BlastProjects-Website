@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
 import { z } from "zod";
 import { Mail, MessageSquare, Send, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const contactFormSchema = insertContactSchema.extend({
   email: z.string().email("Please enter a valid email address"),
@@ -75,9 +76,18 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative py-24 md:py-32">
+      {/* Background decoration */}
+      <div className="absolute left-0 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-[100px]" />
+      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px]" />
+      
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-2">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <Badge variant="outline" className="mb-4" data-testid="badge-contact">Contact</Badge>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               Let's build something great
@@ -88,7 +98,14 @@ export function Contact() {
             </p>
 
             <div className="mt-10 space-y-6">
-              <div className="flex items-start gap-4" data-testid="info-email">
+              <motion.div 
+                className="flex items-start gap-4" 
+                data-testid="info-email"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-accent/10">
                   <Mail size={20} className="text-accent" />
                 </div>
@@ -98,9 +115,16 @@ export function Contact() {
                     hello@devstudio.com
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4" data-testid="info-response-time">
+              <motion.div 
+                className="flex items-start gap-4" 
+                data-testid="info-response-time"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-accent/10">
                   <MessageSquare size={20} className="text-accent" />
                 </div>
@@ -110,10 +134,17 @@ export function Contact() {
                     We typically respond within 24 hours
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            <div className="mt-10 rounded-lg border border-border/50 bg-card/30 p-6" data-testid="card-why-work-with-us">
+            <motion.div 
+              className="mt-10 rounded-lg border border-border/50 bg-card/30 p-6 backdrop-blur-sm" 
+              data-testid="card-why-work-with-us"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
               <h4 className="font-medium">Why work with us?</h4>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <li data-testid="text-benefit-1">Affordable rates without compromising quality</li>
@@ -122,119 +153,126 @@ export function Contact() {
                 <li data-testid="text-benefit-4">Transparent communication throughout</li>
                 <li data-testid="text-benefit-5">Ongoing support after launch</li>
               </ul>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <Card className="border-border/50 bg-card/50 backdrop-blur-sm" data-testid="card-contact-form">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="p-6">
-                <div className="space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="Your name"
-                            {...field}
-                            data-testid="input-name"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="you@example.com"
-                            {...field}
-                            data-testid="input-email"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="subject"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>What are you interested in?</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <Card className="border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-accent/5" data-testid="card-contact-form">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="p-6">
+                  <div className="space-y-4">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Name</FormLabel>
                           <FormControl>
-                            <SelectTrigger data-testid="select-subject">
-                              <SelectValue placeholder="Select a topic" />
-                            </SelectTrigger>
+                            <Input
+                              placeholder="Your name"
+                              {...field}
+                              data-testid="input-name"
+                            />
                           </FormControl>
-                          <SelectContent>
-                            <SelectItem value="General Inquiry">General Inquiry</SelectItem>
-                            <SelectItem value="App Development">App Development</SelectItem>
-                            <SelectItem value="Training Program">Training Program</SelectItem>
-                            <SelectItem value="Custom Project">Custom Project</SelectItem>
-                            <SelectItem value="Partnership">Partnership</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Message</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Tell us about your project or questions..."
-                            className="min-h-32 resize-none"
-                            {...field}
-                            data-testid="textarea-message"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              placeholder="you@example.com"
+                              {...field}
+                              data-testid="input-email"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                  <Button 
-                    type="submit" 
-                    className="w-full gap-2"
-                    disabled={mutation.isPending}
-                    data-testid="button-send-message"
-                  >
-                    {mutation.isPending ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </Card>
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>What are you interested in?</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger data-testid="select-subject">
+                                <SelectValue placeholder="Select a topic" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="General Inquiry">General Inquiry</SelectItem>
+                              <SelectItem value="App Development">App Development</SelectItem>
+                              <SelectItem value="Training Program">Training Program</SelectItem>
+                              <SelectItem value="Custom Project">Custom Project</SelectItem>
+                              <SelectItem value="Partnership">Partnership</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tell us about your project or questions..."
+                              className="min-h-32 resize-none"
+                              {...field}
+                              data-testid="textarea-message"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <Button 
+                      type="submit" 
+                      className="w-full gap-2 bg-accent border-accent-border"
+                      disabled={mutation.isPending}
+                      data-testid="button-send-message"
+                    >
+                      {mutation.isPending ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={16} />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

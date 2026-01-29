@@ -1,4 +1,5 @@
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { motion } from "framer-motion";
 
 const footerLinks = {
   services: [
@@ -30,10 +31,19 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-border/50 bg-card/30">
-      <div className="mx-auto max-w-7xl px-6 py-12">
+    <footer className="relative border-t border-border/50 bg-card/30">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
+      
+      <div className="relative mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-8 md:grid-cols-4">
-          <div className="md:col-span-2">
+          <motion.div 
+            className="md:col-span-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <a 
               href="#" 
               className="flex items-center gap-2 text-xl font-semibold tracking-tight"
@@ -50,27 +60,34 @@ export function Footer() {
             </p>
             <div className="mt-6 flex gap-4">
               {footerLinks.social.map((item) => (
-                <a
+                <motion.a
                   key={item.label}
                   href={item.href}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-muted-foreground transition-colors hover:text-accent"
                   aria-label={item.label}
                   data-testid={`link-social-${item.label.toLowerCase()}`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <item.icon size={20} />
-                </a>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             <h4 className="mb-4 font-medium">Services</h4>
             <ul className="space-y-2">
               {footerLinks.services.map((item) => (
                 <li key={item.label}>
                   <button
                     onClick={() => scrollToSection(item.href)}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-muted-foreground transition-colors hover:text-accent"
                     data-testid={`link-footer-${item.label.toLowerCase().replace(/\s/g, "-")}`}
                   >
                     {item.label}
@@ -78,16 +95,21 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h4 className="mb-4 font-medium">Company</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((item) => (
                 <li key={item.label}>
                   <button
                     onClick={() => scrollToSection(item.href)}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm text-muted-foreground transition-colors hover:text-accent"
                     data-testid={`link-footer-${item.label.toLowerCase()}`}
                   >
                     {item.label}
@@ -95,17 +117,23 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 md:flex-row">
+        <motion.div 
+          className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 md:flex-row"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Dev Studio. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Built with care. Deployed with confidence.
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

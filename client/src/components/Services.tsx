@@ -2,6 +2,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, Rocket, Code2, Zap, Globe, Server, Shield } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import type { Service } from "@shared/schema";
 
 const services: Service[] = [
@@ -84,7 +86,34 @@ const processSteps = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
 export function Services() {
+  const ref = useRef(null);
+  const cardsRef = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const cardsInView = useInView(cardsRef, { once: true, margin: "-50px" });
+
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
@@ -94,10 +123,18 @@ export function Services() {
 
   return (
     <section id="services" className="relative py-24 md:py-32">
+      {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
+      <div className="absolute left-0 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-purple-500/10 blur-[100px]" />
       
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="mb-16 text-center">
+        <motion.div 
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <Badge variant="outline" className="mb-4" data-testid="badge-services">Services</Badge>
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl" data-testid="text-services-title">
             From idea to live app
@@ -106,13 +143,20 @@ export function Services() {
             We handle everything: design, development, integrations, domains, hosting, 
             and deployment. You focus on your business, we build the tech.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="mb-20 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div 
+          ref={ref}
+          className="mb-20 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {processSteps.map((step, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className="flex items-start gap-4 rounded-lg border border-border/50 bg-card/30 p-4 backdrop-blur-sm"
+              variants={itemVariants}
+              className="flex items-start gap-4 rounded-lg border border-border/50 bg-card/30 p-4 backdrop-blur-sm transition-all duration-300 hover:border-accent/30 hover:bg-card/50"
               data-testid={`card-process-step-${index}`}
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-accent/10">
@@ -122,57 +166,68 @@ export function Services() {
                 <h4 className="font-medium">{step.title}</h4>
                 <p className="mt-1 text-sm text-muted-foreground">{step.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {services.map((service) => (
-            <Card 
-              key={service.id}
-              className={`relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm ${
-                service.popular ? "ring-2 ring-accent" : ""
-              }`}
-              data-testid={`card-service-${service.id}`}
+        <motion.div 
+          ref={cardsRef}
+          className="grid gap-6 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate={cardsInView ? "visible" : "hidden"}
+        >
+          {services.map((service, index) => (
+            <motion.div 
+              key={service.id} 
+              variants={itemVariants}
+              custom={index}
             >
-              {service.popular && (
-                <div className="absolute -right-12 top-6 rotate-45 bg-accent px-12 py-1 text-xs font-medium text-accent-foreground">
-                  Popular
-                </div>
-              )}
-              
-              <div className="p-6">
-                <h3 className="text-xl font-semibold" data-testid={`text-service-title-${service.id}`}>{service.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{service.description}</p>
+              <Card 
+                className={`relative h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg ${
+                  service.popular ? "ring-2 ring-accent shadow-[0_0_40px_-10px] shadow-accent/30" : "hover:border-accent/30"
+                }`}
+                data-testid={`card-service-${service.id}`}
+              >
+                {service.popular && (
+                  <div className="absolute -right-12 top-6 rotate-45 bg-accent px-12 py-1 text-xs font-medium text-accent-foreground">
+                    Popular
+                  </div>
+                )}
                 
-                <div className="mt-6">
-                  <span className="text-3xl font-bold" data-testid={`text-service-price-${service.id}`}>{service.price}</span>
-                  {service.price !== "Custom" && (
-                    <span className="text-muted-foreground"> / project</span>
-                  )}
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold" data-testid={`text-service-title-${service.id}`}>{service.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{service.description}</p>
+                  
+                  <div className="mt-6">
+                    <span className="text-3xl font-bold" data-testid={`text-service-price-${service.id}`}>{service.price}</span>
+                    {service.price !== "Custom" && (
+                      <span className="text-muted-foreground"> / project</span>
+                    )}
+                  </div>
+
+                  <ul className="mt-6 space-y-3">
+                    {service.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="flex items-start gap-2 text-sm">
+                        <Check size={16} className="mt-0.5 shrink-0 text-accent" />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button 
+                    className={`mt-6 w-full ${service.popular ? "bg-accent border-accent-border" : ""}`}
+                    variant={service.popular ? "default" : "outline"}
+                    onClick={scrollToContact}
+                    data-testid={`button-service-${service.id}`}
+                  >
+                    Get Started
+                  </Button>
                 </div>
-
-                <ul className="mt-6 space-y-3">
-                  {service.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm">
-                      <Check size={16} className="mt-0.5 shrink-0 text-accent" />
-                      <span className="text-muted-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Button 
-                  className="mt-6 w-full"
-                  variant={service.popular ? "default" : "outline"}
-                  onClick={scrollToContact}
-                  data-testid={`button-service-${service.id}`}
-                >
-                  Get Started
-                </Button>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
