@@ -17,38 +17,25 @@ export function Hero() {
         {/* Base dark gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
         
-        {/* Animated diagonal stripes */}
-        <div className="absolute inset-0 opacity-80">
+        {/* Animated diagonal stripes - positioned lower and more subtle */}
+        <div className="absolute inset-0 opacity-60">
           <motion.div 
-            className="absolute -left-1/4 top-0 h-[150%] w-32 rotate-[25deg] bg-gradient-to-r from-transparent via-violet-600/30 to-transparent blur-xl"
+            className="absolute left-[10%] top-[30%] h-[120%] w-48 rotate-[25deg] bg-gradient-to-r from-transparent via-purple-500/25 to-transparent blur-3xl"
             animate={{ 
-              x: [0, 50, 0],
-              opacity: [0.3, 0.5, 0.3]
+              x: [0, 30, 0],
+              opacity: [0.2, 0.35, 0.2]
             }}
             transition={{ 
               duration: 8, 
               repeat: Infinity, 
-              ease: "easeInOut" 
+              ease: "easeInOut"
             }}
           />
           <motion.div 
-            className="absolute left-[5%] top-0 h-[150%] w-48 rotate-[25deg] bg-gradient-to-r from-transparent via-purple-500/40 to-transparent blur-2xl"
-            animate={{ 
-              x: [0, 30, 0],
-              opacity: [0.4, 0.6, 0.4]
-            }}
-            transition={{ 
-              duration: 6, 
-              repeat: Infinity, 
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div 
-            className="absolute left-[20%] top-0 h-[150%] w-64 rotate-[25deg] bg-gradient-to-r from-transparent via-fuchsia-500/30 to-transparent blur-3xl"
+            className="absolute left-[25%] top-[20%] h-[120%] w-64 rotate-[25deg] bg-gradient-to-r from-transparent via-violet-500/20 to-transparent blur-3xl"
             animate={{ 
               x: [0, 40, 0],
-              opacity: [0.3, 0.5, 0.3]
+              opacity: [0.15, 0.3, 0.15]
             }}
             transition={{ 
               duration: 10, 
@@ -58,51 +45,26 @@ export function Hero() {
             }}
           />
           <motion.div 
-            className="absolute left-[35%] top-0 h-[150%] w-40 rotate-[25deg] bg-gradient-to-r from-transparent via-pink-500/25 to-transparent blur-2xl"
-            animate={{ 
-              x: [0, 60, 0],
-              opacity: [0.25, 0.4, 0.25]
-            }}
-            transition={{ 
-              duration: 7, 
-              repeat: Infinity, 
-              ease: "easeInOut",
-              delay: 0.3
-            }}
-          />
-          <motion.div 
-            className="absolute left-[50%] top-0 h-[150%] w-56 rotate-[25deg] bg-gradient-to-r from-transparent via-violet-400/20 to-transparent blur-3xl"
+            className="absolute left-[40%] top-[25%] h-[120%] w-56 rotate-[25deg] bg-gradient-to-r from-transparent via-fuchsia-500/15 to-transparent blur-3xl"
             animate={{ 
               x: [0, 35, 0],
-              opacity: [0.2, 0.35, 0.2]
+              opacity: [0.1, 0.25, 0.1]
             }}
             transition={{ 
               duration: 9, 
               repeat: Infinity, 
               ease: "easeInOut",
-              delay: 0.8
+              delay: 0.5
             }}
           />
         </div>
 
-        {/* Ambient glow orbs */}
+        {/* Ambient glow orbs - subtle and centered */}
         <motion.div 
-          className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-accent/20 blur-[100px]"
+          className="absolute left-1/4 top-1/2 h-80 w-80 rounded-full bg-accent/10 blur-[120px]"
           animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        />
-        <motion.div 
-          className="absolute -right-32 top-1/2 h-80 w-80 rounded-full bg-purple-600/20 blur-[100px]"
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.15, 0.25, 0.15]
+            scale: [1, 1.15, 1],
+            opacity: [0.1, 0.15, 0.1]
           }}
           transition={{ 
             duration: 10, 
@@ -111,13 +73,25 @@ export function Hero() {
           }}
         />
         <motion.div 
-          className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-blue-500/15 blur-[80px]"
+          className="absolute right-1/4 top-1/3 h-72 w-72 rounded-full bg-purple-600/10 blur-[120px]"
           animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1]
+            scale: [1.1, 1, 1.1],
+            opacity: [0.08, 0.15, 0.08]
           }}
           transition={{ 
             duration: 12, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-violet-500/8 blur-[100px]"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.05, 0.12, 0.05]
+          }}
+          transition={{ 
+            duration: 14, 
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
