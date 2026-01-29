@@ -2,13 +2,14 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
-  GraduationCap, 
+  Sparkles, 
   BookOpen, 
   Users, 
   Clock,
   CheckCircle2,
   ArrowRight,
-  Play
+  Play,
+  Wand2
 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -17,78 +18,78 @@ import type { TrainingModule } from "@shared/schema";
 const modules: TrainingModule[] = [
   {
     id: "1",
-    title: "Foundation: Building Your First App",
-    description: "Learn the basics of modern web development and build your first working application from scratch.",
+    title: "Getting Started with Vibe-Coding",
+    description: "Learn how to use AI tools like Replit Agent to build your first working app - no coding background needed.",
     duration: "Week 1-2",
     topics: [
-      "Understanding the modern tech stack",
-      "Setting up your development environment",
-      "Building responsive user interfaces",
-      "Basic backend concepts",
-      "Deploying your first app",
+      "Introduction to AI-assisted development",
+      "Setting up your Replit workspace",
+      "Communicating with AI to build features",
+      "Understanding what the AI creates",
+      "Your first live deployment",
     ],
   },
   {
     id: "2",
-    title: "Integrations: Connecting the Dots",
-    description: "Master the art of connecting APIs, payment systems, and third-party services to your app.",
+    title: "Integrations: Making It Real",
+    description: "Connect your app to real services - payments, logins, emails - all with AI assistance.",
     duration: "Week 3-4",
     topics: [
-      "API fundamentals and REST",
-      "Authentication (Google, OAuth, etc.)",
-      "Payment integration (Stripe)",
-      "Email and notification systems",
-      "Database connections",
+      "Adding user authentication",
+      "Setting up Stripe payments",
+      "Connecting email services",
+      "Working with databases",
+      "API integrations made simple",
     ],
   },
   {
     id: "3",
-    title: "Launch: Going Live Like a Pro",
-    description: "Learn everything about domains, hosting, SSL, and making your app production-ready.",
+    title: "Going Live: Your App on the Internet",
+    description: "Learn the full process of taking your app from development to a real website people can visit.",
     duration: "Week 5-6",
     topics: [
-      "Domain registration and DNS",
-      "SSL certificates and security",
-      "Hosting and deployment strategies",
-      "Performance optimization",
-      "Monitoring and analytics",
+      "Getting your own domain name",
+      "SSL and security basics",
+      "Publishing your app",
+      "Making it fast and reliable",
+      "Basic analytics setup",
     ],
   },
   {
     id: "4",
-    title: "Scale: Growing Your Application",
-    description: "Advanced techniques for scaling, debugging, and maintaining production applications.",
+    title: "Leveling Up: Maintaining & Growing",
+    description: "Keep your app running smoothly and learn to add new features as your idea evolves.",
     duration: "Week 7-8",
     topics: [
-      "Debugging in production",
-      "Performance at scale",
-      "User feedback integration",
-      "Continuous deployment",
-      "Building for growth",
+      "Fixing issues when things break",
+      "Adding new features with AI",
+      "Understanding user feedback",
+      "Iterating on your product",
+      "Building your next app",
     ],
   },
 ];
 
 const highlights = [
   {
-    icon: Users,
-    title: "Small Cohorts",
-    description: "Maximum 10 students per cohort for personalized attention",
+    icon: Wand2,
+    title: "No Coding Required",
+    description: "Use AI to build - you guide the vision, AI handles the code.",
   },
   {
     icon: BookOpen,
-    title: "Hands-On Projects",
-    description: "Build real apps, not just tutorials. You'll have a portfolio by the end.",
+    title: "Real Projects",
+    description: "Build actual apps you can show off, not just follow-along exercises.",
+  },
+  {
+    icon: Users,
+    title: "Small Groups",
+    description: "Max 10 students so you get personal attention when stuck.",
   },
   {
     icon: Clock,
-    title: "Flexible Schedule",
-    description: "Evening and weekend sessions. Learn while keeping your day job.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Certificate",
-    description: "Earn a certificate to showcase your new skills to employers.",
+    title: "Learn Your Way",
+    description: "Evening sessions that fit around your life and job.",
   },
 ];
 
@@ -142,16 +143,15 @@ export function Training() {
           transition={{ duration: 0.6 }}
         >
           <Badge variant="outline" className="mb-4" data-testid="badge-training">
-            <GraduationCap size={14} className="mr-1" />
-            Training Program
+            <Sparkles size={14} className="mr-1" />
+            Vibe-Coding Bootcamp
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl" data-testid="text-training-title">
-            Learn to build & launch apps
+            Build apps with AI, not code
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground" data-testid="text-training-description">
-            Stop watching tutorials that never teach you the full picture. 
-            Our bootcamp covers everything: from code to live deployment, 
-            integrations to debugging. Go from zero to one.
+            You don't need to be a developer. Learn to use AI tools like Replit to 
+            turn your ideas into real, working applications. I did it, and so can you.
           </p>
         </motion.div>
 
@@ -193,12 +193,12 @@ export function Training() {
               <div>
                 <Badge className="mb-4 bg-accent text-accent-foreground" data-testid="badge-bootcamp-duration">8-Week Program</Badge>
                 <h3 className="text-2xl font-bold md:text-3xl" data-testid="text-bootcamp-title">
-                  The Complete App Builder Bootcamp
+                  The Vibe-Coder Bootcamp
                 </h3>
                 <p className="mt-4 text-muted-foreground" data-testid="text-bootcamp-description">
-                  An intensive, hands-on program designed for beginners who want to 
-                  learn the FULL process of building and launching real applications. 
-                  No more tutorial hell. Just practical skills that get you results.
+                  I'm not a traditional developer - I learned to build real apps using AI tools 
+                  like Replit Agent. It took time to figure out, but now I want to teach you 
+                  everything I learned. Skip the struggle and learn the shortcuts.
                 </p>
                 
                 <div className="mt-6 flex flex-wrap items-baseline gap-2">
@@ -237,15 +237,15 @@ export function Training() {
               </div>
 
               <div className="space-y-4">
-                <h4 className="font-medium text-muted-foreground">What you'll master:</h4>
+                <h4 className="font-medium text-muted-foreground">What you'll learn to do:</h4>
                 <ul className="space-y-2">
                   {[
-                    "Build full-stack web applications",
-                    "Connect APIs and third-party services",
-                    "Set up authentication and payments",
-                    "Deploy to custom domains with SSL",
-                    "Debug and troubleshoot like a pro",
-                    "Scale and maintain production apps",
+                    "Build real apps using AI assistance",
+                    "Set up payments, logins, and databases",
+                    "Deploy to your own custom domain",
+                    "Fix issues when things go wrong",
+                    "Iterate and improve your app over time",
+                    "Launch products people actually use",
                   ].map((item, index) => (
                     <motion.li 
                       key={index} 
@@ -267,7 +267,7 @@ export function Training() {
         </motion.div>
 
         <div>
-          <h3 className="mb-8 text-center text-xl font-semibold" data-testid="text-curriculum-title">Curriculum Overview</h3>
+          <h3 className="mb-8 text-center text-xl font-semibold" data-testid="text-curriculum-title">What We'll Cover</h3>
           <motion.div 
             ref={modulesRef}
             className="grid gap-6 md:grid-cols-2"

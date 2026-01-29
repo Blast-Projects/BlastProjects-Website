@@ -142,7 +142,7 @@ export function Hero() {
           data-testid="badge-hero"
         >
           <Sparkles size={14} className="text-accent" />
-          <span className="text-muted-foreground">From concept to live app</span>
+          <span className="text-muted-foreground">Powered by vibe-coding</span>
         </motion.div>
 
         <motion.h1 
@@ -164,9 +164,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           data-testid="text-hero-description"
         >
-          Professional app development services and hands-on training programs. 
-          We turn your ideas into fully functional, live applications with real 
-          integrations, domains, and everything you need to succeed.
+          Not a traditional developer - just someone who learned to build real apps 
+          using AI tools like Replit. Now offering development services and training 
+          to help you do the same. Your ideas deserve to exist.
         </motion.p>
 
         <motion.div 
