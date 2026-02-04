@@ -39,7 +39,7 @@ export function Training() {
             onClick={scrollToContact}
             data-testid="button-training-inquire"
           >
-            Inquire About Training
+            Book a Consultation
           </Button>
         </motion.div>
       </div>
