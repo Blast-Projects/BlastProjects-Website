@@ -32,13 +32,13 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 25 },
   visible: {
     opacity: 1,
     y: 0,
@@ -64,7 +64,7 @@ export function HowItWorks() {
     <section id="how-it-works" className="relative py-24 md:py-32 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/3 to-background" />
-      <div className="absolute left-1/4 top-0 h-[500px] w-[500px] rounded-full bg-purple-600/5 blur-[120px]" />
+      <div className="absolute left-1/3 top-1/4 h-[400px] w-[400px] rounded-full bg-purple-600/5 blur-[100px]" />
       
       <div className="relative mx-auto max-w-6xl px-6">
         <motion.div 
@@ -99,15 +99,18 @@ export function HowItWorks() {
               className="group relative"
               data-testid={`card-step-${index}`}
             >
-              <div className="relative h-full rounded-xl border border-border/50 bg-card/30 p-5 backdrop-blur-sm transition-all duration-300 hover:border-accent/40 hover:bg-card/50">
+              <div className="relative h-full overflow-hidden rounded-xl border border-border/50 bg-card/40 p-5 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5">
+                {/* Top accent line */}
+                <div className="absolute left-0 right-0 top-0 h-[2px] bg-gradient-to-r from-accent/60 via-purple-500/40 to-transparent" />
+                
                 {/* Step number */}
-                <span className="mb-3 block text-2xl font-bold text-accent/70">
+                <span className="mb-3 block text-3xl font-bold bg-gradient-to-br from-accent to-purple-400 bg-clip-text text-transparent">
                   {step.number}
                 </span>
 
                 {/* Content */}
                 <h3 className="mb-2 text-base font-semibold leading-snug">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                <p className="text-sm text-muted-foreground/80 leading-relaxed">{step.description}</p>
               </div>
             </motion.div>
           ))}
