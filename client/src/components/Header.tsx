@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import { useTheme } from "./ThemeProvider";
 import { Menu, X } from "lucide-react";
-import blastProjectsLogo from "@assets/BlastProjects_Main_Logo_1770175061562.png";
+import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
+import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
 
 const navLinks = [
   { href: "#projects", label: "Projects" },
@@ -14,6 +16,7 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -32,7 +35,7 @@ export function Header() {
           data-testid="link-logo"
         >
           <img 
-            src={blastProjectsLogo} 
+            src={theme === "dark" ? blastProjectsLogoDark : blastProjectsLogoLight} 
             alt="BlastProjects" 
             className="h-12 w-auto"
           />

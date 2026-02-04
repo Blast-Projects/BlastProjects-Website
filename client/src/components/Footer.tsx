@@ -1,6 +1,8 @@
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { motion } from "framer-motion";
-import blastProjectsLogo from "@assets/BlastProjects_Main_Logo_1770175061562.png";
+import { useTheme } from "./ThemeProvider";
+import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
+import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
 
 const footerLinks = {
   services: [
@@ -22,6 +24,8 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const { theme } = useTheme();
+  
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
       const element = document.querySelector(href);
@@ -51,7 +55,7 @@ export function Footer() {
               data-testid="link-footer-logo"
             >
               <img 
-                src={blastProjectsLogo} 
+                src={theme === "dark" ? blastProjectsLogoDark : blastProjectsLogoLight} 
                 alt="BlastProjects" 
                 className="h-12 w-auto"
               />
