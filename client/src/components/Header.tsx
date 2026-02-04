@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "./ThemeToggle";
 import { useTheme } from "./ThemeProvider";
 import { Menu, X } from "lucide-react";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
@@ -54,7 +53,6 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <ThemeToggle />
           <Button 
             onClick={() => scrollToSection("#contact")}
             data-testid="button-get-started"
@@ -64,7 +62,6 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
           <Button
             variant="ghost"
             size="icon"
