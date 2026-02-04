@@ -15,7 +15,7 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -34,7 +34,7 @@ export function Header() {
           data-testid="link-logo"
         >
           <img 
-            src={theme === "dark" ? blastProjectsLogoDark : blastProjectsLogoLight} 
+            src={resolvedTheme === "dark" ? blastProjectsLogoDark : blastProjectsLogoLight} 
             alt="BlastProjects" 
             className="h-12 w-auto"
           />

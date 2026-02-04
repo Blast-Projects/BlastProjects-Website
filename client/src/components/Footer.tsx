@@ -22,7 +22,7 @@ const footerLinks = {
 };
 
 export function Footer() {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
@@ -53,7 +53,7 @@ export function Footer() {
               data-testid="link-footer-logo"
             >
               <img 
-                src={theme === "dark" ? blastProjectsLogoDark : blastProjectsLogoLight} 
+                src={resolvedTheme === "dark" ? blastProjectsLogoDark : blastProjectsLogoLight} 
                 alt="BlastProjects" 
                 className="h-12 w-auto"
               />
