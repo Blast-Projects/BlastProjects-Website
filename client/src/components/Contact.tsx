@@ -90,11 +90,11 @@ export function Contact() {
           >
             <Badge variant="outline" className="mb-4" data-testid="badge-contact">Contact</Badge>
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-              Let's build something great
+              Let's talk about your project
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Ready to turn your idea into reality? Have questions about our services 
-              or training program? We'd love to hear from you.
+              Not sure where to start? Book a free call and we'll help you figure out 
+              the best path forward — no pressure, no obligation.
             </p>
 
             <div className="mt-10 space-y-6">
@@ -112,7 +112,7 @@ export function Contact() {
                 <div>
                   <h4 className="font-medium">Email us</h4>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    hello@devstudio.com
+                    hello@blastprojects.com
                   </p>
                 </div>
               </motion.div>
@@ -264,7 +264,7 @@ export function Contact() {
                       ) : (
                         <>
                           <Send size={16} />
-                          Send Message
+                          Book Free Consultation
                         </>
                       )}
                     </Button>

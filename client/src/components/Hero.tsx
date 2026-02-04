@@ -155,8 +155,6 @@ export function Hero() {
           data-testid="text-hero-title"
         >
           Build. Launch. Scale.
-          <br />
-          <span className="text-muted-foreground">Your ideas deserve to be real.</span>
         </motion.h1>
 
         <motion.p 
@@ -166,9 +164,19 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           data-testid="text-hero-description"
         >
-          Not a traditional developer - just someone who learned to build real apps 
-          using AI tools like Replit. Now offering development services and training 
-          to help you do the same. Your ideas deserve to exist.
+          We design and build real, production-ready web and mobile applications 
+          using modern AI-assisted development.
+        </motion.p>
+
+        <motion.p 
+          className="mt-4 max-w-2xl text-base text-muted-foreground/80"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          data-testid="text-hero-supporting"
+        >
+          We help founders and small businesses turn ideas into live products — from concept 
+          to deployment. No fluff. No overcomplication. Just software that works.
         </motion.p>
 
         <motion.div 
@@ -179,11 +187,11 @@ export function Hero() {
         >
           <Button 
             size="lg" 
-            onClick={() => scrollToSection("#services")}
+            onClick={() => scrollToSection("#contact")}
             className="gap-2 bg-accent border-accent-border"
-            data-testid="button-view-services"
+            data-testid="button-book-consultation"
           >
-            View Services
+            Book a Free 15-Min Consultation
             <ArrowRight size={16} />
           </Button>
           <Button 

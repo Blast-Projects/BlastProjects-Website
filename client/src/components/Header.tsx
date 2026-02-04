@@ -9,8 +9,7 @@ import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
 const navLinks = [
   { href: "#projects", label: "Projects" },
   { href: "#services", label: "Services" },
-  { href: "#training", label: "Training" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "#how-it-works", label: "How It Works" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -60,7 +59,7 @@ export function Header() {
             onClick={() => scrollToSection("#contact")}
             data-testid="button-get-started"
           >
-            Get Started
+            Book a Free Consultation
           </Button>
         </div>
 
@@ -96,7 +95,7 @@ export function Header() {
               onClick={() => scrollToSection("#contact")}
               data-testid="button-mobile-get-started"
             >
-              Get Started
+              Book a Free Consultation
             </Button>
           </div>
         </div>

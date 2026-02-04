@@ -7,13 +7,11 @@ import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
 const footerLinks = {
   services: [
     { label: "App Development", href: "#services" },
-    { label: "MVP Building", href: "#services" },
-    { label: "Custom Solutions", href: "#services" },
+    { label: "How It Works", href: "#how-it-works" },
     { label: "Training", href: "#training" },
   ],
   company: [
     { label: "Projects", href: "#projects" },
-    { label: "Pricing", href: "#pricing" },
     { label: "Contact", href: "#contact" },
   ],
   social: [
