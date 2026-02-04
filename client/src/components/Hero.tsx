@@ -135,7 +135,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-12 text-center md:py-14 lg:py-16">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-20 text-center md:py-24 lg:py-28">
         <motion.h1 
           className="max-w-4xl text-4xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl"
           initial={{ opacity: 0, y: 30 }}
