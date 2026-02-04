@@ -53,7 +53,7 @@ export function Footer() {
               <img 
                 src={blastProjectsLogo} 
                 alt="BlastProjects" 
-                className="h-8 w-auto"
+                className="h-12 w-auto"
               />
             </a>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
