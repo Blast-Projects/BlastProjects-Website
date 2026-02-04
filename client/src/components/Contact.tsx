@@ -268,6 +268,9 @@ export function Contact() {
                         </>
                       )}
                     </Button>
+                    <p className="mt-3 text-center text-xs text-muted-foreground" data-testid="text-consultation-confidential">
+                      All consultations are confidential. NDA available upon request.
+                    </p>
                   </div>
                 </form>
               </Form>

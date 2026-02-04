@@ -13,6 +13,7 @@ client/
 │   │   ├── Projects.tsx  # Project showcase cards (SnapTapSync, Roxy's, Vibez)
 │   │   ├── Services.tsx  # 5 service categories without pricing
 │   │   ├── HowItWorks.tsx # 4-step consultation-based process
+│   │   ├── TrustConfidentiality.tsx # Trust & NDA reassurance section
 │   │   ├── Training.tsx  # Brief 1:1 training mention
 │   │   ├── Contact.tsx   # Contact form with consultation focus
 │   │   ├── Footer.tsx    # Site footer with BlastProjects branding
@@ -39,6 +40,7 @@ shared/
 - **Projects Section**: Showcases SnapTapSync, Roxy's Beauty Lab, and Vibez with ROI results
 - **Services**: 5 categories - MVP/Prototype, Full Apps, Websites/Booking, Payments/Auth/APIs, Deployment/Hosting
 - **How It Works**: 4-step process (Consult → Scope → Quote → Build)
+- **Trust & Confidentiality**: Reassurance section about idea protection, NDA availability
 - **Training**: Brief mention of 1:1 AI-assisted building sessions
 - **Contact Form**: Functional form with validation and API integration
 - **Dark/Light Theme**: Toggle between themes with BlastProjects logo swapping

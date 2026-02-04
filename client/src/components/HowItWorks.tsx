@@ -135,6 +135,9 @@ export function HowItWorks() {
           >
             Start with a Free Consultation
           </Button>
+          <p className="mt-3 text-sm text-muted-foreground" data-testid="text-how-it-works-confidential">
+            All consultations are confidential. NDA available upon request.
+          </p>
         </motion.div>
       </div>
     </section>
