@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { Menu, X } from "lucide-react";
+import blastProjectsLogo from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 
 const navLinks = [
   { href: "#projects", label: "Projects" },
@@ -27,13 +28,14 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
         <a 
           href="#" 
-          className="flex items-center gap-2 text-xl font-semibold tracking-tight"
+          className="flex items-center"
           data-testid="link-logo"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-foreground">
-            <span className="text-sm font-bold text-background">DS</span>
-          </div>
-          <span>Dev Studio</span>
+          <img 
+            src={blastProjectsLogo} 
+            alt="BlastProjects" 
+            className="h-8 w-auto"
+          />
         </a>
 
         <div className="hidden items-center gap-1 md:flex">

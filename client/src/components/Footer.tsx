@@ -1,5 +1,6 @@
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { motion } from "framer-motion";
+import blastProjectsLogo from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 
 const footerLinks = {
   services: [
@@ -46,13 +47,14 @@ export function Footer() {
           >
             <a 
               href="#" 
-              className="flex items-center gap-2 text-xl font-semibold tracking-tight"
+              className="flex items-center"
               data-testid="link-footer-logo"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-foreground">
-                <span className="text-sm font-bold text-background">DS</span>
-              </div>
-              <span>Dev Studio</span>
+              <img 
+                src={blastProjectsLogo} 
+                alt="BlastProjects" 
+                className="h-8 w-auto"
+              />
             </a>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               Building real applications for real businesses. From idea to deployment, 
@@ -128,7 +130,7 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Dev Studio. All rights reserved.
+            &copy; {new Date().getFullYear()} BlastProjects. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Built with care. Deployed with confidence.
