@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Rocket, Globe, CreditCard, Shield, Server, Layers } from "lucide-react";
+import { Rocket, Globe, CreditCard, Server, Layers, Workflow } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -29,6 +29,11 @@ const services = [
     icon: Server,
     title: "Deployment, Domains & Hosting",
     description: "Custom domains, SSL certificates, and reliable hosting setup.",
+  },
+  {
+    icon: Workflow,
+    title: "Automations & Internal Tools",
+    description: "Custom workflows, admin dashboards, and internal tools that streamline operations.",
   },
 ];
 
