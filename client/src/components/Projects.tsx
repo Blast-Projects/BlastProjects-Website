@@ -79,7 +79,7 @@ const itemVariants = {
 export function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   return (
     <section id="projects" className="relative py-24 md:py-32">
@@ -134,14 +134,14 @@ export function Projects() {
                         {/* Logo glow effect */}
                         <div className="absolute inset-0 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-30">
                           <img 
-                            src={theme === "dark" ? project.logoDark : project.logoLight} 
+                            src={resolvedTheme === "dark" ? project.logoDark : project.logoLight} 
                             alt=""
                             className={`${project.logoSize} w-auto object-contain`}
                             aria-hidden="true"
                           />
                         </div>
                         <img 
-                          src={theme === "dark" ? project.logoDark : project.logoLight} 
+                          src={resolvedTheme === "dark" ? project.logoDark : project.logoLight} 
                           alt={`${project.title} logo`}
                           className={`relative ${project.logoSize} w-auto object-contain drop-shadow-lg`}
                           data-testid={`img-project-logo-${project.id}`}
