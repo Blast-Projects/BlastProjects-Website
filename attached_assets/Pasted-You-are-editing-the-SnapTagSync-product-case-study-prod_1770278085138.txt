@@ -1,0 +1,142 @@
+You are editing the SnapTagSync product case-study / product detail page.
+
+IMPORTANT CONTEXT:
+SnapTagSync is NOT fully launched yet.
+It is currently in private development with a public WAITLIST.
+Do NOT imply full production usage, paying users, or live results.
+All copy must be honest, forward-looking, and early-access focused.
+
+GOAL:
+Rewrite the page copy to reflect:
+- Pre-launch status
+- Waitlist / early access positioning
+- Clear problem → solution narrative
+- Vision and roadmap instead of results
+- Credibility without exaggeration
+
+TONE:
+- Professional
+- Confident but honest
+- Founder-led startup
+- Modern SaaS language
+- No hype, no lies
+
+---
+
+### HEADER / STATUS
+Replace any “Live” indicators with:
+“Waitlist Open” or “Early Access”
+
+---
+
+### PRODUCT NAME
+SnapTagSync
+
+---
+
+### OVERVIEW (Rewrite this section)
+
+SnapTagSync is a next-generation photo capture, organization, and synchronization platform designed for teams and individuals who need structured, reliable photo workflows across devices.
+
+Built for real-world operations — from industrial teams to growing organizations — SnapTagSync focuses on making photo capture smarter, searchable, and securely organized from the moment a photo is taken.
+
+SnapTagSync is currently in private development with early access available via waitlist.
+
+---
+
+### THE PROBLEM (Rewrite)
+
+Photos are everywhere — phones, tablets, shared drives, cloud folders — but managing them across teams and devices quickly becomes chaotic.
+
+Files get duplicated, lost, mislabeled, or buried in personal photo libraries. Critical images lack context, metadata, or structure, making them difficult to find when they matter most.
+
+Existing solutions are either consumer-focused, expensive, or not designed for structured, team-based workflows.
+
+---
+
+### THE SOLUTION (Rewrite)
+
+SnapTagSync is being built to solve this by providing a structured, metadata-driven photo workflow.
+
+The platform enables users to capture photos with purpose — automatically attaching tags, context, and organization at the source — while syncing securely across devices and cloud storage.
+
+The goal is simple:
+Make every photo easy to capture, easy to find, and easy to trust.
+
+---
+
+### KEY FEATURES (Rewrite – no “live” claims)
+
+- Real-time photo sync across devices (in development)
+- AI-assisted tagging and smart search (early access)
+- Structured albums based on tags, projects, or workflows
+- One-tap secure cloud backup
+- Controlled sharing for teams and collaborators
+- Offline capture with automatic sync when reconnected
+
+---
+
+### TECH STACK (Can remain factual)
+
+- React Native
+- Node.js
+- AWS S3
+- PostgreSQL
+- TensorFlow
+
+---
+
+### WEBSITE SECTION
+
+Keep:
+snaptagsync.com
+
+Optional subtext:
+“Join the waitlist for early access”
+
+---
+
+### TIMELINE (Update)
+
+- Private Development: In Progress
+- Early Access / Waitlist: Open
+- Public Launch Target: 2026
+
+---
+
+### RESULTS SECTION (IMPORTANT – Replace Entirely)
+
+REMOVE any metrics, savings claims, or user counts.
+
+Replace with:
+
+### WHAT WE’RE BUILDING TOWARD
+
+- A reliable alternative to fragmented photo storage
+- Structured photo workflows for real-world teams
+- Reduced photo loss during device transitions
+- Faster photo retrieval through tagging and search
+- A platform that scales from individuals to organizations
+
+---
+
+### CTA SECTION (Rewrite)
+
+Replace “Start a Conversation” copy with:
+
+Primary CTA Button:
+“Join the Waitlist”
+
+Supporting text:
+Get early access updates and help shape the future of SnapTagSync.
+
+---
+
+FINAL CHECK:
+- No fake numbers
+- No claims of existing users
+- No savings claims
+- No “replaced X” language
+- Everything framed as early access, in progress, or upcoming
+
+Proceed to rewrite the page using this guidance.

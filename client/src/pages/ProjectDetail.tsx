@@ -16,12 +16,13 @@ interface ProjectDetail {
   id: string;
   slug: string;
   title: string;
-  status: "Live" | "Coming Soon" | "In Development";
+  status: "Live" | "Coming Soon" | "In Development" | "Waitlist Open";
   url?: string;
   overview: string;
   problem: string;
   solution: string;
   results?: string[];
+  vision?: string[];
   features: string[];
   techStack: string[];
   timeline: string;
@@ -36,27 +37,28 @@ const projectsData: ProjectDetail[] = [
     id: "1",
     slug: "snaptagsync",
     title: "SnapTagSync",
-    status: "Live",
+    status: "Waitlist Open",
     url: "https://snaptagsync.com",
-    overview: "SnapTagSync is a powerful photo synchronization and management app designed for photographers and everyday users who want their memories accessible everywhere. It seamlessly connects all your devices with real-time backup and intelligent organization.",
-    problem: "Managing photos across multiple devices is a nightmare. People lose precious memories when phones break, storage fills up, or they can't find that one photo from years ago. Existing solutions are either too expensive, too complicated, or don't work reliably.",
-    solution: "SnapTagSync provides effortless, real-time photo syncing across all devices with smart AI tagging that makes finding any photo instant. One tap backup, intelligent albums, and sharing that just works - without the monthly subscription trap.",
-    results: [
-      "Replaced iCloud and Google Photos subscriptions",
-      "Saved users $120+/year on storage fees",
-      "10,000+ photos synced in first month",
-      "Zero photos lost during device transitions",
+    overview: "SnapTagSync is a next-generation photo capture, organization, and synchronization platform designed for teams and individuals who need structured, reliable photo workflows across devices. Built for real-world operations — from industrial teams to growing organizations — SnapTagSync focuses on making photo capture smarter, searchable, and securely organized from the moment a photo is taken. Currently in private development with early access available via waitlist.",
+    problem: "Photos are everywhere — phones, tablets, shared drives, cloud folders — but managing them across teams and devices quickly becomes chaotic. Files get duplicated, lost, mislabeled, or buried in personal photo libraries. Critical images lack context, metadata, or structure, making them difficult to find when they matter most. Existing solutions are either consumer-focused, expensive, or not designed for structured, team-based workflows.",
+    solution: "SnapTagSync is being built to solve this by providing a structured, metadata-driven photo workflow. The platform enables users to capture photos with purpose — automatically attaching tags, context, and organization at the source — while syncing securely across devices and cloud storage. The goal is simple: Make every photo easy to capture, easy to find, and easy to trust.",
+    vision: [
+      "A reliable alternative to fragmented photo storage",
+      "Structured photo workflows for real-world teams",
+      "Reduced photo loss during device transitions",
+      "Faster photo retrieval through tagging and search",
+      "A platform that scales from individuals to organizations",
     ],
     features: [
-      "Real-time sync across unlimited devices",
-      "AI-powered photo tagging and search",
-      "Smart album organization",
-      "One-tap backup to cloud",
-      "Instant sharing with anyone",
-      "Offline access to favorites",
+      "Real-time photo sync across devices (in development)",
+      "AI-assisted tagging and smart search (early access)",
+      "Structured albums based on tags, projects, or workflows",
+      "One-tap secure cloud backup",
+      "Controlled sharing for teams and collaborators",
+      "Offline capture with automatic sync when reconnected",
     ],
     techStack: ["React Native", "Node.js", "AWS S3", "TensorFlow", "PostgreSQL"],
-    timeline: "Q1 2026 Launch",
+    timeline: "Private Development: In Progress · Early Access: Open · Public Launch: 2026",
     logoDark: snapTagSyncLogoDark,
     logoLight: snapTagSyncLogoLight,
     logoSize: "h-16",
@@ -194,11 +196,23 @@ export default function ProjectDetail() {
                   <h1 className="mt-4 text-3xl font-bold" data-testid="text-project-title">{project.title}</h1>
                 </div>
                 <Badge 
-                  variant={project.status === "Live" ? "default" : "secondary"}
-                  className={project.status === "Live" ? "bg-green-500/20 text-green-400 border-green-500/30" : ""}
+                  variant="default"
+                  className={
+                    project.status === "Live" 
+                      ? "bg-green-500/20 text-green-400 border-green-500/30" 
+                      : project.status === "Waitlist Open"
+                      ? "bg-purple-500/20 text-purple-400 border-purple-500/30"
+                      : "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                  }
                   data-testid="badge-project-status"
                 >
-                  <span className={`mr-1.5 h-1.5 w-1.5 rounded-full ${project.status === "Live" ? "bg-green-400" : "bg-blue-400"}`} />
+                  <span className={`mr-1.5 h-1.5 w-1.5 rounded-full ${
+                    project.status === "Live" 
+                      ? "bg-green-400" 
+                      : project.status === "Waitlist Open"
+                      ? "bg-purple-400"
+                      : "bg-blue-400"
+                  }`} />
                   {project.status}
                 </Badge>
               </div>
@@ -233,6 +247,24 @@ export default function ProjectDetail() {
                       <li key={index} className="flex items-start gap-2" data-testid={`text-result-${index}`}>
                         <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-green-400" />
                         <span className="text-foreground/90">{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* What We're Building Toward (for pre-launch projects) */}
+              {project.vision && project.vision.length > 0 && (
+                <div className="rounded-xl border border-accent/20 bg-accent/5 p-6">
+                  <div className="mb-4 flex items-center gap-2">
+                    <TrendingUp size={18} className="text-accent" />
+                    <h2 className="text-sm font-semibold uppercase tracking-wider text-accent" data-testid="text-vision-label">What We're Building Toward</h2>
+                  </div>
+                  <ul className="space-y-2">
+                    {project.vision.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2" data-testid={`text-vision-${index}`}>
+                        <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-accent" />
+                        <span className="text-foreground/90">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -313,6 +345,9 @@ export default function ProjectDetail() {
                     {project.url.replace('https://', '')}
                     <ExternalLink size={14} />
                   </a>
+                  {project.vision && (
+                    <p className="mt-2 text-xs text-muted-foreground">Join the waitlist for early access</p>
+                  )}
                 </Card>
               </motion.div>
             )}
@@ -339,14 +374,30 @@ export default function ProjectDetail() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Card className="border-accent/20 bg-accent/5 backdrop-blur-sm p-6 text-center" data-testid="card-cta">
-                <p className="mb-4 text-sm text-muted-foreground">Want to build something like this?</p>
-                <Button 
-                  className="w-full bg-accent border-accent-border"
-                  onClick={scrollToContact}
-                  data-testid="button-start-conversation"
-                >
-                  Start a Conversation
-                </Button>
+                {project.vision ? (
+                  <>
+                    <p className="mb-4 text-sm text-muted-foreground">Get early access updates and help shape the future of {project.title}.</p>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
+                      <Button 
+                        className="w-full bg-accent border-accent-border"
+                        data-testid="button-join-waitlist"
+                      >
+                        Join the Waitlist
+                      </Button>
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <p className="mb-4 text-sm text-muted-foreground">Want to build something like this?</p>
+                    <Button 
+                      className="w-full bg-accent border-accent-border"
+                      onClick={scrollToContact}
+                      data-testid="button-start-conversation"
+                    >
+                      Start a Conversation
+                    </Button>
+                  </>
+                )}
               </Card>
             </motion.div>
           </div>
