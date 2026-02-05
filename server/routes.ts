@@ -5,7 +5,7 @@ import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function registerRoutes(
   httpServer: Server,
@@ -17,7 +17,7 @@ export async function registerRoutes(
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContactSubmission(validatedData);
       
-      if (process.env.RESEND_API_KEY) {
+      if (resend) {
         try {
           await resend.emails.send({
             from: "BlastProjects <notifications@blastprojects.com>",
@@ -27,7 +27,7 @@ export async function registerRoutes(
               <h2>New Consultation Request</h2>
               <p><strong>Name:</strong> ${validatedData.name}</p>
               <p><strong>Email:</strong> ${validatedData.email}</p>
-              <p><strong>Company:</strong> ${validatedData.company || "Not provided"}</p>
+              <p><strong>Subject:</strong> ${validatedData.subject}</p>
               <p><strong>Message:</strong></p>
               <p>${validatedData.message}</p>
               <hr>
