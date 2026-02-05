@@ -29,10 +29,7 @@ export function TrustConfidentiality() {
               strictly confidential. We never reuse, resell, or share client ideas or concepts.
             </p>
             
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground" data-testid="text-trust-nda">
-              For clients who require additional protection, we are happy to sign a mutual 
-              non-disclosure agreement before any work begins.
-            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground" data-testid="text-trust-nda">For additional protection, we sign a mutual non-disclosure agreement before any work begins.</p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2" data-testid="trust-feature-confidential">
