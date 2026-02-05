@@ -22,10 +22,13 @@ interface ProjectDetail {
   problem: string;
   solution: string;
   results?: string[];
+  resultsLabel?: string;
   vision?: string[];
   features: string[];
   techStack: string[];
   timeline: string;
+  ctaText?: string;
+  ctaSubtext?: string;
   logoDark: string;
   logoLight: string;
   logoSize: string;
@@ -70,26 +73,29 @@ const projectsData: ProjectDetail[] = [
     title: "Roxy's Beauty Lab",
     status: "Live",
     url: "https://roxysbeautylab.com",
-    overview: "Roxy's Beauty Lab is a complete salon management platform built specifically for beauty professionals. From online booking to payment processing, inventory management to client relationships - everything a modern salon needs in one beautiful interface.",
-    problem: "Running a beauty business means juggling appointments, inventory, payments, and client relationships - usually with a mix of paper calendars, text messages, and separate payment apps. It's chaotic, unprofessional, and loses money.",
-    solution: "A single platform that handles everything: clients book online 24/7, automatic reminders reduce no-shows, inventory tracks itself, payments process instantly, and beautiful analytics show what's working. Built by beauty pros, for beauty pros.",
+    overview: "Roxy's Beauty Lab is a professional beauty studio offering high-quality, personalized services in a modern and welcoming environment. Focused on precision, care, and client experience, Roxy's Beauty Lab combines expert technique with a seamless booking experience, so clients can focus on feeling confident and taken care of.",
+    problem: "Booking beauty services is often inconvenient: unclear availability, slow responses, and outdated booking processes. Clients want quality service without friction, uncertainty, or wasted time.",
+    solution: "Roxy's Beauty Lab delivers a smooth, professional experience from booking to service. Clients can easily view availability, book appointments online, and receive clear communication, all while receiving expert care in a clean, modern setting.",
     results: [
-      "Eliminated Square subscription ($60/month saved)",
-      "Eliminated Calendly subscription ($20/month saved)",
-      "Reduced no-shows by 40% with auto-reminders",
-      "One platform replaced 4 separate tools",
-      "Saves 5+ hours/week on admin tasks",
+      "Trusted by a growing local client base",
+      "Consistent, high-quality results",
+      "Easy online booking experience",
+      "Reliable communication and follow-ups",
+      "Designed around client comfort and confidence",
     ],
+    resultsLabel: "Why Clients Love Roxy's Beauty Lab",
     features: [
-      "Online booking with automatic reminders",
-      "Client management and history",
-      "Inventory tracking and alerts",
-      "Integrated payment processing",
-      "Staff scheduling and payroll",
-      "Analytics and business insights",
+      "Online booking and scheduling",
+      "Professional, personalized services",
+      "Clear availability and pricing",
+      "Reliable appointment reminders",
+      "Client-focused experience",
+      "Trusted local beauty services",
     ],
-    techStack: ["Next.js", "Stripe", "Twilio", "PostgreSQL", "Vercel"],
-    timeline: "Launched 2025",
+    techStack: ["Modern Booking Platform", "Secure Payments", "Mobile-Friendly"],
+    timeline: "Now Booking",
+    ctaText: "Book an Appointment",
+    ctaSubtext: "Appointments available — secure your spot today.",
     logoDark: roxysBeautyLabLogo,
     logoLight: roxysBeautyLabLogo,
     logoSize: "h-32",
@@ -101,25 +107,25 @@ const projectsData: ProjectDetail[] = [
     title: "Vibez",
     status: "Coming Soon",
     url: "https://vibez.app",
-    overview: "Vibez is a social event discovery app that helps users find local happenings and coordinate attendance with friends. It combines event discovery with social coordination in a seamless mobile experience.",
-    problem: "Finding out what's happening locally is fragmented across dozens of apps, social media, and word of mouth. Coordinating with friends about which events to attend involves endless group chats and confusion.",
-    solution: "Vibez aggregates local events into one beautiful feed, lets you see which friends are interested or going, and provides simple coordination tools. No more 'are you going?' texts - just tap to show interest and see who else is in.",
-    results: [
-      "Replaces Eventbrite, Facebook Events, and group chats",
-      "One app instead of checking 5+ platforms",
-      "No more missed events from friends",
-      "Simplified group coordination in one tap",
+    overview: "Vibez is a social discovery app designed to help people find local events, connect through shared interests, and coordinate plans with friends, all in one place. Instead of juggling group chats, social feeds, and multiple event platforms, Vibez brings everything together into a simple, social-first experience built around real-life moments. Currently in development, with early access planned through a limited beta.",
+    problem: "Discovering what's happening locally is scattered across countless apps, social posts, and group chats. Even when you find an event, coordinating with friends often turns into long message threads, missed updates, and last-minute confusion. There's no single place that combines event discovery with social coordination.",
+    solution: "Vibez is being built to centralize local events into one curated feed while adding lightweight social tools that make planning effortless. Users can see what events are happening, who's interested, and coordinate plans with a single tap, without endless texting or switching apps. The focus is on simplicity, connection, and real-world experiences.",
+    vision: [
+      "Reduce friction in finding local events",
+      "Make social planning effortless",
+      "Bring friends onto the same page faster",
+      "Replace scattered coordination with one shared experience",
     ],
     features: [
       "Curated local event discovery",
-      "Friend activity feed",
+      "Friend activity and interest signals",
       "One-tap interest and RSVP",
-      "Group coordination tools",
+      "Lightweight group coordination tools",
       "Event reminders and updates",
-      "Venue ratings and reviews",
+      "Venue insights and community feedback",
     ],
     techStack: ["React Native", "Firebase", "Node.js", "Google Maps API", "Push Notifications"],
-    timeline: "Q3 2026 Beta",
+    timeline: "Development: In Progress · Private Beta: Planned · Public Release: 2026",
     logoDark: vibezLogo,
     logoLight: vibezLogo,
     logoSize: "h-20",
@@ -240,7 +246,9 @@ export default function ProjectDetail() {
                 <div className="rounded-xl border border-green-500/20 bg-green-500/5 p-6">
                   <div className="mb-4 flex items-center gap-2">
                     <TrendingUp size={18} className="text-green-400" />
-                    <h2 className="text-sm font-semibold uppercase tracking-wider text-green-400" data-testid="text-results-label">The Results</h2>
+                    <h2 className="text-sm font-semibold uppercase tracking-wider text-green-400" data-testid="text-results-label">
+                      {project.resultsLabel || "The Results"}
+                    </h2>
                   </div>
                   <ul className="space-y-2">
                     {project.results.map((result, index) => (
@@ -374,15 +382,27 @@ export default function ProjectDetail() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Card className="border-accent/20 bg-accent/5 backdrop-blur-sm p-6 text-center" data-testid="card-cta">
-                {project.vision ? (
+                {project.ctaText ? (
                   <>
-                    <p className="mb-4 text-sm text-muted-foreground">Get early access updates and help shape the future of {project.title}.</p>
+                    <p className="mb-4 text-sm text-muted-foreground">{project.ctaSubtext}</p>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
+                      <Button 
+                        className="w-full bg-accent border-accent-border"
+                        data-testid="button-custom-cta"
+                      >
+                        {project.ctaText}
+                      </Button>
+                    </a>
+                  </>
+                ) : project.vision ? (
+                  <>
+                    <p className="mb-4 text-sm text-muted-foreground">Join the waitlist and help shape the future of {project.title}.</p>
                     <a href={project.url} target="_blank" rel="noopener noreferrer" className="block">
                       <Button 
                         className="w-full bg-accent border-accent-border"
                         data-testid="button-join-waitlist"
                       >
-                        Join the Waitlist
+                        Get Early Access
                       </Button>
                     </a>
                   </>

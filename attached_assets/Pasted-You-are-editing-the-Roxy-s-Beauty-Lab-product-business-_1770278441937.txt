@@ -1,0 +1,105 @@
+You are editing the Roxy’s Beauty Lab product / business page.
+
+IMPORTANT CONTEXT:
+Roxy’s Beauty Lab is a LIVE, customer-facing beauty business.
+It is acceptable to present this as established, professional, and trusted.
+You may confidently highlight results, client experience, and polish.
+
+GOAL:
+Make this page feel:
+- Premium
+- Established
+- Trustworthy
+- Client-focused
+- Booking-ready
+
+TONE:
+- Confident
+- Warm
+- Professional beauty brand
+- High-end but approachable
+
+---
+
+### STATUS BADGE
+Use:
+“Live” or “Now Booking”
+
+---
+
+### OVERVIEW (Rewrite)
+
+Roxy’s Beauty Lab is a professional beauty studio offering high-quality, personalized services in a modern and welcoming environment.
+
+Focused on precision, care, and client experience, Roxy’s Beauty Lab combines expert technique with a seamless booking experience — so clients can focus on feeling confident and taken care of.
+
+---
+
+### THE PROBLEM (Rewrite)
+
+Booking beauty services is often inconvenient — unclear availability, slow responses, and outdated booking processes.
+
+Clients want quality service without friction, uncertainty, or wasted time.
+
+---
+
+### THE SOLUTION (Rewrite)
+
+Roxy’s Beauty Lab delivers a smooth, professional experience from booking to service.
+
+Clients can easily view availability, book appointments online, and receive clear communication — all while receiving expert care in a clean, modern setting.
+
+---
+
+### KEY FEATURES (Confident)
+
+- Online booking and scheduling
+- Professional, personalized services
+- Clear availability and pricing
+- Reliable appointment reminders
+- Client-focused experience
+- Trusted local beauty services
+
+---
+
+### TECH STACK (Optional, if shown)
+
+- Modern booking platform
+- Secure payments
+- Mobile-friendly experience
+
+---
+
+### WEBSITE
+roxysbeautylab.com  
+(or your actual domain)
+
+---
+
+### RESULTS / SOCIAL PROOF (You CAN flex here)
+
+Rename section to:
+
+### WHY CLIENTS LOVE ROXY’S BEAUTY LAB
+
+- Trusted by a growing local client base
+- Consistent, high-quality results
+- Easy online booking experience
+- Reliable communication and follow-ups
+- Designed around client comfort and confidence
+
+---
+
+### CTA (Rewrite)
+
+Primary Button:
+“Book an Appointment”
+
+Supporting text:
+Appointments available — secure your spot today.
+
+FINAL CHECK:
+- Polished
+- Confident
+- Feels established
+- Conversion-focused

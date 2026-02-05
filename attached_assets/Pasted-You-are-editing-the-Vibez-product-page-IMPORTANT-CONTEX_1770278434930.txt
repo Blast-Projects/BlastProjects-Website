@@ -1,0 +1,121 @@
+You are editing the Vibez product page.
+
+IMPORTANT CONTEXT:
+Vibez is NOT launched yet.
+It is in active development with a “Coming Soon” / early beta phase.
+Do NOT imply active users, replacement of platforms, or real usage metrics.
+
+GOAL:
+Rewrite the Vibez page to be:
+- Honest and pre-launch
+- Vision-driven
+- Social, fun, and modern
+- Clear about what’s being built
+- Credible without exaggeration
+
+TONE:
+- Confident startup
+- Music + social culture
+- Friendly but professional
+- No fake traction
+
+---
+
+### STATUS BADGE
+Replace with:
+“Coming Soon” or “Beta In Development”
+
+---
+
+### OVERVIEW (Rewrite)
+
+Vibez is a social discovery app designed to help people find local events, connect through shared interests, and coordinate plans with friends — all in one place.
+
+Instead of juggling group chats, social feeds, and multiple event platforms, Vibez brings everything together into a simple, social-first experience built around real-life moments.
+
+Vibez is currently in development, with early access planned through a limited beta.
+
+---
+
+### THE PROBLEM (Rewrite)
+
+Discovering what’s happening locally is scattered across countless apps, social posts, and group chats.
+
+Even when you find an event, coordinating with friends often turns into long message threads, missed updates, and last-minute confusion.
+
+There’s no single place that combines event discovery with social coordination — until now.
+
+---
+
+### THE SOLUTION (Rewrite)
+
+Vibez is being built to centralize local events into one curated feed while adding lightweight social tools that make planning effortless.
+
+Users can see what events are happening, who’s interested, and coordinate plans with a single tap — without endless texting or switching apps.
+
+The focus is on simplicity, connection, and real-world experiences.
+
+---
+
+### KEY FEATURES (Future-facing)
+
+- Curated local event discovery
+- Friend activity and interest signals
+- One-tap interest and RSVP
+- Lightweight group coordination tools
+- Event reminders and updates
+- Venue insights and community feedback
+
+---
+
+### TECH STACK
+(Keep factual)
+
+- React Native  
+- Firebase  
+- Node.js  
+- Google Maps API  
+- Push Notifications  
+
+---
+
+### WEBSITE
+vibez.app  
+Optional subtext: “Launching soon”
+
+---
+
+### TIMELINE (Update)
+
+- Development: In Progress  
+- Private Beta: Planned  
+- Public Release Target: 2026  
+
+---
+
+### RESULTS SECTION (REPLACE ENTIRELY)
+
+Rename section to:
+
+### WHAT VIBEZ IS AIMING TO SOLVE
+
+- Reduce friction in finding local events
+- Make social planning effortless
+- Bring friends onto the same page faster
+- Replace scattered coordination with one shared experience
+
+---
+
+### CTA (Rewrite)
+
+Primary Button:
+“Get Early Access”
+
+Supporting text:
+Join the waitlist and help shape the future of Vibez.
+
+FINAL CHECK:
+- No claims of replacing Eventbrite or Facebook
+- No usage metrics
+- No “already solved” language
+- Everything framed as upcoming and in progress
