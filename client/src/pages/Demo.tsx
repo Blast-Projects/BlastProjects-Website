@@ -38,7 +38,7 @@ const slides = [
     type: "cta",
     title: "Ready to Build?",
     subtitle: "Book Your Free Consultation",
-    tagline: "Let's Take Off 🚀",
+    tagline: "Let's Take Off",
   },
 ];
 
