@@ -195,48 +195,48 @@ export function Hero() {
         </motion.div>
 
         <motion.div 
-          className="mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-12"
+          className="mt-24 flex flex-wrap items-center justify-center gap-4 md:gap-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <motion.div 
-            className="flex items-center gap-2"
+            className="flex items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             data-testid="feature-production-ready"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
-              <Rocket size={16} className="text-accent" />
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10">
+              <Rocket size={14} className="text-accent" />
             </div>
-            <span className="text-sm font-medium text-muted-foreground">Production-Ready Builds</span>
+            <span className="text-sm font-medium">Production-Ready Builds</span>
           </motion.div>
           
           <motion.div 
-            className="flex items-center gap-2"
+            className="flex items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             data-testid="feature-founder-led"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
-              <User size={16} className="text-accent" />
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10">
+              <User size={14} className="text-accent" />
             </div>
-            <span className="text-sm font-medium text-muted-foreground">Founder-Led Development</span>
+            <span className="text-sm font-medium">Founder-Led Development</span>
           </motion.div>
           
           <motion.div 
-            className="flex items-center gap-2"
+            className="flex items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
             data-testid="feature-satisfaction"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
-              <Heart size={16} className="text-accent" />
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10">
+              <Heart size={14} className="text-accent" />
             </div>
-            <span className="text-sm font-medium text-muted-foreground">100% Client Satisfaction</span>
+            <span className="text-sm font-medium">100% Client Satisfaction</span>
           </motion.div>
         </motion.div>
       </div>
