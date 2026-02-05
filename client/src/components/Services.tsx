@@ -13,7 +13,7 @@ const services = [
   {
     icon: Layers,
     title: "Full Web & Mobile App Builds",
-    description: "Complete applications from design to deployment. Everything you need to launch.",
+    description: "Complete applications, dashboards, and SaaS platforms from design to deployment.",
   },
   {
     icon: Globe,
@@ -22,8 +22,8 @@ const services = [
   },
   {
     icon: CreditCard,
-    title: "Payments, Auth & API Integrations",
-    description: "Stripe, user authentication, and third-party service connections.",
+    title: "Payments, Auth & Integrations",
+    description: "Stripe, authentication, APIs, and workflow automations.",
   },
   {
     icon: Server,
