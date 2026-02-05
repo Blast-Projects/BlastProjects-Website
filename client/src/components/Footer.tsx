@@ -13,6 +13,7 @@ const footerLinks = {
   company: [
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
+    { label: "Policies", href: "/policies" },
   ],
   social: [
     { label: "GitHub", href: "#", icon: SiGithub },
@@ -111,13 +112,24 @@ export function Footer() {
             <ul className="space-y-2">
               {footerLinks.company.map((item) => (
                 <li key={item.label}>
-                  <button
-                    onClick={() => scrollToSection(item.href)}
-                    className="text-sm text-muted-foreground transition-colors hover:text-accent"
-                    data-testid={`link-footer-${item.label.toLowerCase()}`}
-                  >
-                    {item.label}
-                  </button>
+                  {item.href.startsWith("/") ? (
+                    <Link href={item.href}>
+                      <span
+                        className="text-sm text-muted-foreground transition-colors hover:text-accent cursor-pointer"
+                        data-testid={`link-footer-${item.label.toLowerCase()}`}
+                      >
+                        {item.label}
+                      </span>
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(item.href)}
+                      className="text-sm text-muted-foreground transition-colors hover:text-accent"
+                      data-testid={`link-footer-${item.label.toLowerCase()}`}
+                    >
+                      {item.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -134,17 +146,9 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} BlastProjects. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <Link href="/policies">
-              <span className="text-sm text-muted-foreground transition-colors hover:text-accent cursor-pointer" data-testid="link-footer-policies">
-                Policies
-              </span>
-            </Link>
-            <span className="text-muted-foreground/30">·</span>
-            <p className="text-sm text-muted-foreground">
-              Built with care. Deployed with confidence.
-            </p>
-          </div>
+          <p className="text-sm text-muted-foreground">
+            Built with care. Deployed with confidence.
+          </p>
         </motion.div>
       </div>
     </footer>
