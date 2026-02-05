@@ -43,7 +43,7 @@ const policies = [
   {
     title: "Contact",
     content: "For questions regarding these policies, please contact:",
-    email: "hello@blastprojects.com"
+    email: "carlos@blastprojects.com"
   }
 ];
 
