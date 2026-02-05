@@ -18,7 +18,7 @@ const footerLinks = {
   social: [
     { label: "GitHub", href: "#", icon: SiGithub },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/blastprojects", icon: SiLinkedin },
-    { label: "X", href: "#", icon: SiX },
+    { label: "X", href: "https://x.com/blastprojects?s=21", icon: SiX },
   ],
 };
 
