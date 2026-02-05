@@ -133,7 +133,7 @@ export function HowItWorks() {
             <ArrowRight size={16} />
           </Button>
           <p className="mt-3 text-sm text-muted-foreground" data-testid="text-how-it-works-confidential">
-            All consultations are confidential. NDA available upon request.
+            All consultations are confidential. Mutual NDA signed before any work begins.
           </p>
         </motion.div>
       </div>
