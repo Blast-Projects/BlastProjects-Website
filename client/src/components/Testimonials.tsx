@@ -4,12 +4,14 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SiLinkedin } from "react-icons/si";
 import { Quote, ExternalLink } from "lucide-react";
+import roxanaPhoto from "@assets/roxana-quintero.png";
 
 const testimonials = [
   {
     name: "Roxana Quintero",
     role: "Beauty Lab Owner",
     platform: "linkedin",
+    photo: roxanaPhoto,
     url: "https://www.linkedin.com/posts/carlosabg_productbuilder-softwareengineering-businesssystems-activity-7421696233016025088-VNW4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0506kBehXPGHmOHOBRNIgIEq-laetEgT8",
     quote: "This was way more than a website! You truly built a full system that streamlined my bookings and payments and made everything feel seamless for my clients and for me on the backend.",
     highlight: "I appreciate your attention to detail, communication, and ability to translate business needs into something that actually works.",
@@ -100,8 +102,12 @@ export function Testimonials() {
 
                   <div className="relative">
                     <div className="mb-6 flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-accent/30 to-purple-500/20 text-lg font-semibold">
-                        {testimonial.name.charAt(0)}
+                      <div className="h-12 w-12 overflow-hidden rounded-full ring-2 ring-accent/20">
+                        <img 
+                          src={testimonial.photo} 
+                          alt={testimonial.name}
+                          className="h-full w-full object-cover object-center"
+                        />
                       </div>
                       <div>
                         <h4 className="font-semibold">{testimonial.name}</h4>
