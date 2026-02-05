@@ -1,0 +1,72 @@
+You are building a new page for an existing website.
+
+GOAL
+Create a clean, professional “Company Policies” page for BlastProjects, accessible at:
+- Route: /policies
+- URL: https://blastprojects.com/policies
+
+IMPORTANT
+- Do NOT add this page to the top header / main navigation.
+- It’s OK to add it in the footer as a small link labeled “Policies”.
+- Keep the design consistent with the existing BlastProjects site (fonts, spacing, colors, layout).
+- Make it responsive and readable (mobile-friendly).
+- The page should be simple, modern, and trustworthy.
+
+PAGE CONTENT (copy exactly, you can adjust formatting but not meaning)
+Title: Company Policies
+Brand: BlastProjects
+Last updated: February 2026
+
+Sections:
+
+1) Workplace Policy
+BlastProjects is a remote-first software development studio.
+We operate with flexibility, trust, and accountability, focusing on outcomes rather than rigid schedules or locations. Team members collaborate across time zones using modern tools and clear communication to deliver high-quality work efficiently and responsibly.
+
+2) Confidentiality & Client Work
+All client projects, discussions, designs, and deliverables are treated as strictly confidential.
+BlastProjects respects non-disclosure agreements (NDAs) and confidentiality obligations. We do not share, reuse, or disclose client information, intellectual property, or materials without explicit permission.
+
+3) Security & Data Responsibility
+We take reasonable measures to protect project data and access, including:
+- Secure authentication and access controls
+- Trusted development and collaboration tools
+- Principle-of-least-access for internal systems
+While no system is immune to risk, we are committed to responsible data handling and continuous improvement of security practices.
+
+4) Intellectual Property
+Unless otherwise agreed in writing:
+- Client-owned work remains the property of the client upon completion and payment
+- BlastProjects retains the right to showcase non-confidential work for portfolio or marketing purposes
+Any deviations from this are documented contractually.
+
+5) Professional Conduct
+BlastProjects is committed to respectful, ethical, and professional collaboration.
+We do not tolerate harassment, discrimination, misuse of data, or unethical behavior in any form. We aim to build long-term relationships based on transparency, trust, and mutual respect.
+
+6) Changes to These Policies
+BlastProjects may update these policies periodically to reflect changes in operations, legal requirements, or best practices. Updates will be posted on this page with a revised “Last updated” date.
+
+7) Contact
+For questions regarding these policies, please contact:
+hello@blastprojects.com
+
+DESIGN REQUIREMENTS
+- Use a simple layout: centered container, max-width ~800–900px.
+- Add clear typography hierarchy: H1 for title, H2 for section headings.
+- Add subtle dividers between sections.
+- Add a small “Last updated: February 2026” line under the title.
+- Provide good line-height and spacing.
+- Include a “Back to Home” or “Return to site” link at the top or bottom (optional).
+
+IMPLEMENTATION REQUIREMENTS
+- Implement as a real page/route in the existing stack (React/Next/Remix/etc. depending on the repo).
+- Ensure it is reachable at /policies.
+- Add a footer link labeled “Policies” that points to /policies, but do not add anything to the header.
+- If the project has a router, add the route.
+- If the project uses file-based routing (like Next.js), create the correct file (e.g., pages/policies.tsx or app/policies/page.tsx).
+- Do not break existing routes/components.
+
+OUTPUT
+- Create the page and route, and confirm which files you changed/added.
+- Keep code clean and consistent with the codebase conventions.

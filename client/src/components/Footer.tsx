@@ -1,5 +1,6 @@
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { useTheme } from "./ThemeProvider";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
@@ -133,9 +134,17 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} BlastProjects. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground">
-            Built with care. Deployed with confidence.
-          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/policies">
+              <span className="text-sm text-muted-foreground transition-colors hover:text-accent cursor-pointer" data-testid="link-footer-policies">
+                Policies
+              </span>
+            </Link>
+            <span className="text-muted-foreground/30">·</span>
+            <p className="text-sm text-muted-foreground">
+              Built with care. Deployed with confidence.
+            </p>
+          </div>
         </motion.div>
       </div>
     </footer>
