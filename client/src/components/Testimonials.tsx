@@ -106,7 +106,7 @@ export function Testimonials() {
                         <img 
                           src={testimonial.photo} 
                           alt={testimonial.name}
-                          className="h-full w-full object-cover scale-[1.35]"
+                          className="h-full w-full object-cover scale-[1.2]"
                         />
                       </div>
                       <div>
