@@ -106,13 +106,6 @@ export function Header() {
                 {link.label}
               </Button>
             ))}
-            <Button 
-              className="mt-2"
-              onClick={() => scrollToSection("#contact")}
-              data-testid="button-mobile-get-started"
-            >
-              Book a Free Consultation
-            </Button>
             <Button
               variant="ghost"
               className="justify-start mt-2 text-muted-foreground"
@@ -121,6 +114,13 @@ export function Header() {
             >
               {themeIcon}
               <span className="ml-2">Theme: {themeLabel}</span>
+            </Button>
+            <Button 
+              className="mt-2"
+              onClick={() => scrollToSection("#contact")}
+              data-testid="button-mobile-get-started"
+            >
+              Book a Free Consultation
             </Button>
           </div>
         </div>
