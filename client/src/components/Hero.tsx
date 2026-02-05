@@ -153,8 +153,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           data-testid="text-hero-description"
         >
-          We design and build real, production-ready web and mobile applications 
-          using modern AI-assisted development.
+          We build production-ready web and mobile applications using modern AI-assisted development.
         </motion.p>
 
         <motion.p 
@@ -164,8 +163,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.25 }}
           data-testid="text-hero-supporting"
         >
-          We help founders and small businesses turn ideas into live products — from concept 
-          to deployment. No fluff. No overcomplication. Just software that works.
+          From idea to launch — no fluff, just software that works.
         </motion.p>
 
         <motion.div 
