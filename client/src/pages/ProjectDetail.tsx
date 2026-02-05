@@ -127,7 +127,7 @@ const projectsData: ProjectDetail[] = [
 
 export default function ProjectDetail() {
   const params = useParams();
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const project = projectsData.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -185,7 +185,7 @@ export default function ProjectDetail() {
                   <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-2">Products</p>
                   <div className="flex items-center gap-4">
                     <img 
-                      src={theme === "dark" ? project.logoDark : project.logoLight} 
+                      src={resolvedTheme === "dark" ? project.logoDark : project.logoLight} 
                       alt={`${project.title} logo`}
                       className={`${project.logoSize} w-auto object-contain`}
                       data-testid="img-project-logo"
