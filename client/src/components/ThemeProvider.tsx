@@ -24,11 +24,11 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({ children, defaultTheme = "system" }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
+    // Always use system theme - clear any previously stored preference
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("theme") as Theme | null;
-      return stored || defaultTheme;
+      localStorage.removeItem("theme");
     }
-    return defaultTheme;
+    return "system";
   });
 
   const [resolvedTheme, setResolvedTheme] = useState<"dark" | "light">(() => {
@@ -62,7 +62,7 @@ export function ThemeProvider({ children, defaultTheme = "system" }: ThemeProvid
       applyTheme(theme);
     }
     
-    localStorage.setItem("theme", theme);
+    // Theme always follows system preference - no localStorage persistence
   }, [theme]);
 
   return (
