@@ -106,7 +106,7 @@ const projectsData: ProjectDetail[] = [
     slug: "vibez",
     title: "Vibez",
     status: "Coming Soon",
-    url: "https://vibez.app",
+    url: "https://joinvibez.com",
     overview: "Vibez is a social discovery app designed to help people find local events, connect through shared interests, and coordinate plans with friends, all in one place. Instead of juggling group chats, social feeds, and multiple event platforms, Vibez brings everything together into a simple, social-first experience built around real-life moments. Currently in development, with early access planned through a limited beta.",
     problem: "Discovering what's happening locally is scattered across countless apps, social posts, and group chats. Even when you find an event, coordinating with friends often turns into long message threads, missed updates, and last-minute confusion. There's no single place that combines event discovery with social coordination.",
     solution: "Vibez is being built to centralize local events into one curated feed while adding lightweight social tools that make planning effortless. Users can see what events are happening, who's interested, and coordinate plans with a single tap, without endless texting or switching apps. The focus is on simplicity, connection, and real-world experiences.",
