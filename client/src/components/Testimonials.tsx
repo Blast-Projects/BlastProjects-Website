@@ -3,13 +3,14 @@ import { Card } from "@/components/ui/card";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SiLinkedin } from "react-icons/si";
-import { Quote } from "lucide-react";
+import { Quote, ExternalLink } from "lucide-react";
 
 const testimonials = [
   {
     name: "Roxana Quintero",
     role: "Beauty Lab Owner",
     platform: "linkedin",
+    url: "https://www.linkedin.com/posts/carlosabg_productbuilder-softwareengineering-businesssystems-activity-7421696233016025088-VNW4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAA0506kBehXPGHmOHOBRNIgIEq-laetEgT8",
     quote: "This was way more than a website! You truly built a full system that streamlined my bookings and payments and made everything feel seamless for my clients and for me on the backend.",
     highlight: "I appreciate your attention to detail, communication, and ability to translate business needs into something that actually works.",
   },
@@ -79,35 +80,45 @@ export function Testimonials() {
               className="w-full max-w-2xl"
               data-testid={`card-testimonial-${index}`}
             >
-              <Card className="relative overflow-hidden border-border/50 bg-card/50 p-8 backdrop-blur-sm">
-                <div className="absolute right-6 top-6">
-                  <SiLinkedin size={24} className="text-[#0A66C2]" />
-                </div>
-                
-                <div className="absolute -left-4 -top-4 opacity-10">
-                  <Quote size={80} className="text-accent" />
-                </div>
-
-                <div className="relative">
-                  <div className="mb-6 flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-accent/30 to-purple-500/20 text-lg font-semibold">
-                      {testimonial.name.charAt(0)}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
+              <a 
+                href={testimonial.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+                data-testid={`link-testimonial-${index}`}
+              >
+                <Card className="group relative overflow-visible border-border/50 bg-card/50 p-8 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 cursor-pointer">
+                  <div className="absolute right-6 top-6 flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">View on LinkedIn</span>
+                    <SiLinkedin size={24} className="text-[#0A66C2]" />
+                    <ExternalLink size={14} className="text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                  </div>
+                  
+                  <div className="absolute -left-4 -top-4 opacity-10">
+                    <Quote size={80} className="text-accent" />
                   </div>
 
-                  <blockquote className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                    "{testimonial.quote}"
-                  </blockquote>
-                  
-                  <p className="border-l-2 border-accent/50 pl-4 text-base italic text-foreground/90">
-                    "{testimonial.highlight}"
-                  </p>
-                </div>
-              </Card>
+                  <div className="relative">
+                    <div className="mb-6 flex items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-accent/30 to-purple-500/20 text-lg font-semibold">
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold">{testimonial.name}</h4>
+                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      </div>
+                    </div>
+
+                    <blockquote className="mb-4 text-lg leading-relaxed text-muted-foreground">
+                      "{testimonial.quote}"
+                    </blockquote>
+                    
+                    <p className="border-l-2 border-accent/50 pl-4 text-base italic text-foreground/90">
+                      "{testimonial.highlight}"
+                    </p>
+                  </div>
+                </Card>
+              </a>
             </motion.div>
           ))}
         </motion.div>
