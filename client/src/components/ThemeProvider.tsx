@@ -23,13 +23,26 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children, defaultTheme = "system" }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    // Always use system theme - clear any previously stored preference
+  const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      localStorage.removeItem("theme");
+      const stored = localStorage.getItem("theme") as Theme | null;
+      if (stored && ["dark", "light", "system"].includes(stored)) {
+        return stored;
+      }
     }
-    return "system";
+    return defaultTheme;
   });
+
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme);
+    if (typeof window !== "undefined") {
+      if (newTheme === "system") {
+        localStorage.removeItem("theme");
+      } else {
+        localStorage.setItem("theme", newTheme);
+      }
+    }
+  };
 
   const [resolvedTheme, setResolvedTheme] = useState<"dark" | "light">(() => {
     if (theme === "system") {

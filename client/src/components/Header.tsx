@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "./ThemeProvider";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
 
@@ -14,7 +14,16 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  const cycleTheme = () => {
+    if (theme === "system") setTheme("light");
+    else if (theme === "light") setTheme("dark");
+    else setTheme("system");
+  };
+
+  const themeIcon = theme === "system" ? <Monitor size={16} /> : theme === "light" ? <Sun size={16} /> : <Moon size={16} />;
+  const themeLabel = theme === "system" ? "System" : theme === "light" ? "Light" : "Dark";
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -53,6 +62,16 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={cycleTheme}
+            data-testid="button-theme-toggle"
+            title={`Theme: ${themeLabel}`}
+            className="text-muted-foreground"
+          >
+            {themeIcon}
+          </Button>
           <Button 
             onClick={() => scrollToSection("#contact")}
             data-testid="button-get-started"
@@ -93,6 +112,15 @@ export function Header() {
               data-testid="button-mobile-get-started"
             >
               Book a Free Consultation
+            </Button>
+            <Button
+              variant="ghost"
+              className="justify-start mt-2 text-muted-foreground"
+              onClick={cycleTheme}
+              data-testid="button-mobile-theme-toggle"
+            >
+              {themeIcon}
+              <span className="ml-2">Theme: {themeLabel}</span>
             </Button>
           </div>
         </div>
