@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Quote } from "lucide-react";
+import { SiLinkedin } from "react-icons/si";
 import roxanaPhoto from "@assets/roxana-quintero.png";
 
 const testimonials = [
@@ -89,6 +90,10 @@ export function Testimonials() {
                 data-testid={`link-testimonial-${index}`}
               >
                 <Card className="group relative overflow-visible border-border/50 bg-card/50 p-8 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 cursor-pointer">
+                  <div className="absolute right-6 top-6">
+                    <SiLinkedin size={24} className="text-[#0A66C2]" />
+                  </div>
+                  
                   <div className="absolute -left-4 -top-4 opacity-10">
                     <Quote size={80} className="text-accent" />
                   </div>
