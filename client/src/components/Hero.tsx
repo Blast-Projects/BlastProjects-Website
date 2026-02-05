@@ -195,7 +195,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div 
-          className="mt-16 flex flex-wrap items-center justify-center gap-6 md:gap-10"
+          className="mt-20 flex flex-wrap items-center justify-center gap-8 md:gap-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
