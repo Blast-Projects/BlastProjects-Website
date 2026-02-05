@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Rocket, User, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -195,44 +195,49 @@ export function Hero() {
         </motion.div>
 
         <motion.div 
-          className="mt-20 grid w-full max-w-3xl grid-cols-3 gap-8 border-t border-border/50 pt-10"
+          className="mt-16 flex flex-wrap items-center justify-center gap-6 md:gap-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="text-center" data-testid="stat-apps-launched">
-            <motion.div 
-              className="text-3xl font-bold md:text-4xl"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6, type: "spring" }}
-            >
-              15+
-            </motion.div>
-            <div className="mt-1 text-sm text-muted-foreground">Apps Launched</div>
-          </div>
-          <div className="text-center" data-testid="stat-students-trained">
-            <motion.div 
-              className="text-3xl font-bold md:text-4xl"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.7, type: "spring" }}
-            >
-              50+
-            </motion.div>
-            <div className="mt-1 text-sm text-muted-foreground">Students Trained</div>
-          </div>
-          <div className="text-center" data-testid="stat-satisfaction">
-            <motion.div 
-              className="text-3xl font-bold md:text-4xl"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8, type: "spring" }}
-            >
-              100%
-            </motion.div>
-            <div className="mt-1 text-sm text-muted-foreground">Client Satisfaction</div>
-          </div>
+          <motion.div 
+            className="flex items-center gap-2"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            data-testid="feature-production-ready"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
+              <Rocket size={16} className="text-accent" />
+            </div>
+            <span className="text-sm font-medium text-muted-foreground">Production-Ready Builds</span>
+          </motion.div>
+          
+          <motion.div 
+            className="flex items-center gap-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            data-testid="feature-founder-led"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
+              <User size={16} className="text-accent" />
+            </div>
+            <span className="text-sm font-medium text-muted-foreground">Founder-Led Development</span>
+          </motion.div>
+          
+          <motion.div 
+            className="flex items-center gap-2"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            data-testid="feature-satisfaction"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
+              <Heart size={16} className="text-accent" />
+            </div>
+            <span className="text-sm font-medium text-muted-foreground">100% Client Satisfaction</span>
+          </motion.div>
         </motion.div>
       </div>
     </section>
