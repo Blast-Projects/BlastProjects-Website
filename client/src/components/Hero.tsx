@@ -146,7 +146,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p 
-          className="mt-10 max-w-2xl text-lg text-muted-foreground md:text-xl"
+          className="mt-14 max-w-2xl text-lg text-muted-foreground md:text-xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -164,7 +164,7 @@ export function Hero() {
         >From idea to launch. No fluff, just software that works.</motion.p>
 
         <motion.div 
-          className="mt-12 flex flex-row items-center justify-center gap-4"
+          className="mt-14 flex flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -190,7 +190,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div 
-          className="mt-24 flex flex-wrap items-center justify-center gap-3 md:gap-5"
+          className="mt-28 flex flex-wrap items-center justify-center gap-3 md:gap-5"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
