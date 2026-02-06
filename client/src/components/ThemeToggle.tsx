@@ -1,55 +1,24 @@
-import { Moon, Sun, Monitor } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useTheme } from "./ThemeProvider";
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          data-testid="button-theme-toggle"
-        >
-          <Sun size={18} className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon size={18} className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem 
-          onClick={() => setTheme("light")}
-          data-testid="button-theme-light"
-          className={theme === "light" ? "bg-accent/10" : ""}
-        >
-          <Sun size={16} className="mr-2" />
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem 
-          onClick={() => setTheme("dark")}
-          data-testid="button-theme-dark"
-          className={theme === "dark" ? "bg-accent/10" : ""}
-        >
-          <Moon size={16} className="mr-2" />
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem 
-          onClick={() => setTheme("system")}
-          data-testid="button-theme-system"
-          className={theme === "system" ? "bg-accent/10" : ""}
-        >
-          <Monitor size={16} className="mr-2" />
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+      data-testid="button-theme-toggle"
+      title={theme === "dark" ? "Switch to light" : "Switch to dark"}
+    >
+      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }

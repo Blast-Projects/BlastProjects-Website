@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "./ThemeProvider";
-import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 import blastProjectsLogoLight from "@assets/IMG_4360_1770176964631.png";
 
@@ -16,14 +16,9 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
-  const cycleTheme = () => {
-    if (theme === "system") setTheme("light");
-    else if (theme === "light") setTheme("dark");
-    else setTheme("system");
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
-
-  const themeIcon = theme === "system" ? <Monitor size={16} /> : theme === "light" ? <Sun size={16} /> : <Moon size={16} />;
-  const themeLabel = theme === "system" ? "System" : theme === "light" ? "Light" : "Dark";
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -65,12 +60,12 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={cycleTheme}
+            onClick={toggleTheme}
             data-testid="button-theme-toggle"
-            title={`Theme: ${themeLabel}`}
+            title={theme === "dark" ? "Switch to light" : "Switch to dark"}
             className="text-muted-foreground"
           >
-            {themeIcon}
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </Button>
           <Button 
             onClick={() => scrollToSection("#contact")}
@@ -110,11 +105,11 @@ export function Header() {
             <Button
               variant="ghost"
               className="justify-start mt-2 text-muted-foreground"
-              onClick={cycleTheme}
+              onClick={toggleTheme}
               data-testid="button-mobile-theme-toggle"
             >
-              {themeIcon}
-              <span className="ml-2">Theme: {themeLabel}</span>
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+              <span className="ml-2">{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
             </Button>
             <Button 
               className="mt-2 bg-accent border-accent-border"
