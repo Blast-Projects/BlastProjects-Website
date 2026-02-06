@@ -138,7 +138,7 @@ export function Contact() {
             </div>
 
             <motion.div 
-              className="mt-10 rounded-xl border border-border/50 bg-card/30 p-6 backdrop-blur-sm" 
+              className="mt-10 rounded-xl border border-purple-500/10 bg-gradient-to-br from-purple-500/5 to-transparent p-6 backdrop-blur-sm" 
               data-testid="card-why-work-with-us"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -148,23 +148,23 @@ export function Contact() {
               <h4 className="text-lg font-semibold text-foreground">Why work with us?</h4>
               <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-center gap-3" data-testid="text-benefit-1">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">✓</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/10 text-purple-400 text-xs">✓</span>
                   Affordable rates without compromising quality
                 </li>
                 <li className="flex items-center gap-3" data-testid="text-benefit-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">✓</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/10 text-purple-400 text-xs">✓</span>
                   Real experience deploying production apps
                 </li>
                 <li className="flex items-center gap-3" data-testid="text-benefit-3">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">✓</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/10 text-purple-400 text-xs">✓</span>
                   We handle all the technical complexity
                 </li>
                 <li className="flex items-center gap-3" data-testid="text-benefit-4">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">✓</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/10 text-purple-400 text-xs">✓</span>
                   Transparent communication throughout
                 </li>
                 <li className="flex items-center gap-3" data-testid="text-benefit-5">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-xs">✓</span>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/10 text-purple-400 text-xs">✓</span>
                   Ongoing support after launch
                 </li>
               </ul>
