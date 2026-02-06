@@ -94,7 +94,7 @@ export function Contact() {
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Not sure where to start? Book a free call and we'll help you figure out 
-              the best path forward - no pressure, no obligation.
+              the best path forward, no pressure, no obligation.
             </p>
 
             <div className="mt-10 space-y-6">
