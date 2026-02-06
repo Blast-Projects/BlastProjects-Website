@@ -205,15 +205,15 @@ export function Hero() {
           ].map((item) => (
             <motion.div
               key={item.testId}
-              className="group relative flex cursor-default items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm transition-colors duration-300 hover:border-accent/50 hover:bg-accent/5"
+              className="group relative flex cursor-default items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm transition-colors duration-150 hover:border-accent/50 hover:bg-accent/5"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
               transition={{ duration: 0.5, delay: item.delay }}
               data-testid={item.testId}
             >
-              <div className="absolute inset-0 rounded-full bg-accent/0 blur-xl transition-all duration-300 group-hover:bg-accent/10" />
-              <div className="relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10 transition-all duration-300 group-hover:from-accent/30 group-hover:to-purple-500/20">
+              <div className="absolute inset-0 rounded-full bg-accent/0 blur-xl transition-all duration-150 group-hover:bg-accent/10" />
+              <div className="relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10 transition-all duration-150 group-hover:from-accent/30 group-hover:to-purple-500/20">
                 <item.icon size={14} className="text-accent" />
               </div>
               <span className="relative text-sm font-medium">{item.label}</span>
