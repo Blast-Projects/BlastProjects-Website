@@ -10,18 +10,24 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <Projects />
-        <Testimonials />
-        <Services />
-        <HowItWorks />
-        <TrustConfidentiality />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="relative min-h-screen">
+      <div className="starfield-layer stars-small" />
+      <div className="starfield-layer stars-medium" />
+      <div className="starfield-layer stars-large" />
+      <div className="space-nebula" />
+      <div className="relative z-10">
+        <Header />
+        <main>
+          <Hero />
+          <Projects />
+          <Testimonials />
+          <Services />
+          <HowItWorks />
+          <TrustConfidentiality />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
