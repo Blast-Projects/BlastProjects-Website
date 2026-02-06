@@ -84,15 +84,15 @@ export default function Demo() {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-black" />
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/15 via-black to-black" />
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-500/8 rounded-full blur-[120px]" />
 
       <div className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 600px 400px at 15% 20%, rgba(139, 92, 246, 0.06), transparent),
-            radial-gradient(ellipse 500px 350px at 85% 60%, rgba(124, 58, 237, 0.04), transparent)
+            radial-gradient(ellipse 600px 400px at 15% 20%, rgba(139, 92, 246, 0.04), transparent),
+            radial-gradient(ellipse 500px 350px at 85% 60%, rgba(124, 58, 237, 0.03), transparent)
           `,
         }}
       />
@@ -127,7 +127,7 @@ export default function Demo() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -40 }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 text-center px-8 max-w-4xl"
+          className="relative z-10 text-center px-6 max-w-4xl max-h-[calc(100vh-80px)] overflow-hidden"
         >
           {slide.type === "intro" && (
             <div className="space-y-8">
@@ -206,31 +206,31 @@ export default function Demo() {
           )}
 
           {slide.type === "projects" && (
-            <div className="space-y-10">
+            <div className="space-y-6 md:space-y-10">
               <motion.h2
-                className="text-4xl md:text-5xl font-bold text-white"
+                className="text-3xl md:text-5xl font-bold text-white"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
                 {slide.title}
               </motion.h2>
-              <div className="flex flex-wrap items-center justify-center gap-12">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
                 {(slide.projects as { name: string; logo: string; logoClass: string }[])?.map((project, i) => (
                   <motion.div
                     key={project.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={i < itemIndex ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-center gap-3"
+                    className="flex flex-col items-center gap-2"
                   >
-                    <div className="flex h-32 w-48 items-center justify-center">
+                    <div className="flex h-20 w-36 md:h-32 md:w-48 items-center justify-center">
                       <img
                         src={project.logo}
                         alt={project.name}
-                        className={`${project.logoClass} max-w-[160px] object-contain`}
+                        className={`${project.logoClass} max-w-[120px] md:max-w-[160px] object-contain`}
                       />
                     </div>
-                    <span className="text-base text-gray-400">{project.name}</span>
+                    <span className="text-sm md:text-base text-gray-400">{project.name}</span>
                   </motion.div>
                 ))}
               </div>
