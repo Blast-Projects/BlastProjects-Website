@@ -21,7 +21,7 @@ export async function registerRoutes(
         try {
           await resend.emails.send({
             from: "BlastProjects <notifications@blastprojects.com>",
-            to: ["carlos@blastprojects.com"],
+            to: ["hello@blastprojects.com"],
             subject: `New Consultation Request from ${validatedData.name}`,
             html: `
               <h2>New Consultation Request</h2>
