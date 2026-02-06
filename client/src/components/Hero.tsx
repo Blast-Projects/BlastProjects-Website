@@ -175,10 +175,10 @@ export function Hero() {
           <Button 
             size="lg" 
             onClick={() => scrollToSection("#contact")}
-            className="gap-2 bg-accent border-accent-border"
+            className="gap-2 bg-white text-black border-white/80 hover:bg-white/90"
             data-testid="button-book-consultation"
           >
-            Book a Free 15-Min Consultation
+            Get Started
             <ArrowRight size={16} />
           </Button>
           <Button 

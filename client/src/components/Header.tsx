@@ -75,8 +75,9 @@ export function Header() {
           <Button 
             onClick={() => scrollToSection("#contact")}
             data-testid="button-get-started"
+            className="bg-accent border-accent-border"
           >
-            Book a Free Consultation
+            Book a Consultation
           </Button>
         </div>
 
@@ -116,11 +117,11 @@ export function Header() {
               <span className="ml-2">Theme: {themeLabel}</span>
             </Button>
             <Button 
-              className="mt-2"
+              className="mt-2 bg-accent border-accent-border"
               onClick={() => scrollToSection("#contact")}
               data-testid="button-mobile-get-started"
             >
-              Book a Free Consultation
+              Book a Consultation
             </Button>
           </div>
         </div>
