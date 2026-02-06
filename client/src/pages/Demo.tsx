@@ -127,16 +127,16 @@ export default function Demo() {
               >
                 {slide.title}
               </motion.h2>
-              <div className="space-y-4">
+              <div className="inline-flex flex-col items-start gap-4">
                 {slide.items?.map((item, i) => (
                   <motion.div
                     key={item}
                     initial={{ opacity: 0, x: -30 }}
                     animate={i < itemIndex ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
                     transition={{ duration: 0.4 }}
-                    className="flex items-center justify-center gap-3 text-xl md:text-2xl text-gray-200"
+                    className="flex items-center gap-3 text-xl md:text-2xl text-gray-200"
                   >
-                    <CheckCircle className="text-purple-400" size={24} />
+                    <CheckCircle className="text-purple-400 shrink-0" size={24} />
                     <span>{item}</span>
                   </motion.div>
                 ))}
