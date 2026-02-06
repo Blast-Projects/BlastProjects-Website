@@ -296,7 +296,7 @@ export default function Demo() {
 
       <button
         onClick={toggleMusic}
-        className="absolute top-6 right-6 z-20 p-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-gray-400 hover:text-purple-400 transition-colors"
+        className="absolute top-6 right-6 z-20 p-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-gray-200 hover:text-white transition-colors"
         data-testid="button-music-toggle"
       >
         {musicPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
