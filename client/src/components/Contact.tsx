@@ -236,7 +236,6 @@ export function Contact() {
                             <SelectContent>
                               <SelectItem value="General Inquiry">General Inquiry</SelectItem>
                               <SelectItem value="App Development">App Development</SelectItem>
-                              <SelectItem value="Training Program">Training Program</SelectItem>
                               <SelectItem value="Custom Project">Custom Project</SelectItem>
                               <SelectItem value="Partnership">Partnership</SelectItem>
                             </SelectContent>
