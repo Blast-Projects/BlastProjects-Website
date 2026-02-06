@@ -23,10 +23,10 @@ function generateStars(count: number, w: number, h: number): Star[] {
       stars.push({
         x: col * cellW + Math.random() * cellW,
         y: row * cellH + Math.random() * cellH,
-        size: Math.random() < 0.85 ? 0.5 + Math.random() * 0.8 : 1.2 + Math.random() * 0.8,
+        size: Math.random() < 0.85 ? 0.4 + Math.random() * 0.6 : 1 + Math.random() * 0.6,
         phase: Math.random() * Math.PI * 2,
         speed: 0.3 + Math.random() * 1.2,
-        baseAlpha: 0.3 + Math.random() * 0.7,
+        baseAlpha: 0.2 + Math.random() * 0.6,
       });
     }
   }
@@ -72,24 +72,39 @@ export function Starfield() {
         if (isDark) {
           const purpleTint = star.size > 1;
           if (purpleTint) {
-            ctx.fillStyle = `rgba(200, 170, 255, ${alpha})`;
+            ctx.fillStyle = `rgba(200, 170, 255, ${alpha * 0.6})`;
           } else {
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.55})`;
           }
         } else {
-          ctx.fillStyle = `rgba(100, 70, 160, ${alpha * 0.45})`;
+          const purpleTint = star.size > 0.8;
+          if (purpleTint) {
+            ctx.fillStyle = `rgba(139, 92, 246, ${alpha * 0.55})`;
+          } else {
+            ctx.fillStyle = `rgba(100, 70, 160, ${alpha * 0.4})`;
+          }
         }
 
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
 
-        if (isDark && star.size > 1 && alpha > 0.7) {
+        if (isDark && star.size > 1 && alpha > 0.6) {
           ctx.save();
-          const glowAlpha = (alpha - 0.7) * 2;
-          ctx.fillStyle = `rgba(200, 170, 255, ${glowAlpha * 0.15})`;
+          const glowAlpha = (alpha - 0.6) * 1.5;
+          ctx.fillStyle = `rgba(200, 170, 255, ${glowAlpha * 0.08})`;
           ctx.beginPath();
           ctx.arc(star.x, star.y, star.size * 3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        if (!isDark && star.size > 0.8 && alpha > 0.5) {
+          ctx.save();
+          const glowAlpha = (alpha - 0.5) * 1.2;
+          ctx.fillStyle = `rgba(139, 92, 246, ${glowAlpha * 0.06})`;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size * 2.5, 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
         }
