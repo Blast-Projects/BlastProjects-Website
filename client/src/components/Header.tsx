@@ -63,7 +63,7 @@ export function Header() {
             onClick={toggleTheme}
             data-testid="button-theme-toggle"
             title={theme === "dark" ? "Switch to light" : "Switch to dark"}
-            className="text-muted-foreground"
+            className="text-white/80 hover:text-white"
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} className="!text-black" fill="#374151" />}
           </Button>
@@ -82,7 +82,7 @@ export function Header() {
             size="icon"
             onClick={toggleTheme}
             data-testid="button-mobile-theme-toggle"
-            className="text-muted-foreground"
+            className="text-white/80 hover:text-white"
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} className="!text-black" fill="#374151" />}
           </Button>
