@@ -81,7 +81,7 @@ export function Contact() {
       <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px]" />
       
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-12 lg:grid-cols-2 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -172,6 +172,7 @@ export function Contact() {
           </motion.div>
 
           <motion.div
+            className="lg:mt-16"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
