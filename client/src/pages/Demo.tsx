@@ -53,6 +53,7 @@ function useAudioEngine() {
   const ctxRef = useRef<AudioContext | null>(null);
   const soundEnabledRef = useRef(false);
   const [soundOn, setSoundOn] = useState(false);
+  const ambientNodesRef = useRef<{ stop: () => void } | null>(null);
 
   const getCtx = useCallback(() => {
     if (!ctxRef.current) {
@@ -64,29 +65,136 @@ function useAudioEngine() {
     return ctxRef.current;
   }, []);
 
+  const startAmbient = useCallback(() => {
+    if (ambientNodesRef.current) return;
+    const ctx = getCtx();
+    const masterGain = ctx.createGain();
+    masterGain.gain.setValueAtTime(0, ctx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0.035, ctx.currentTime + 2);
+    masterGain.connect(ctx.destination);
+
+    const pad1 = ctx.createOscillator();
+    const pad1Gain = ctx.createGain();
+    pad1.type = "sine";
+    pad1.frequency.setValueAtTime(55, ctx.currentTime);
+    pad1Gain.gain.setValueAtTime(0.6, ctx.currentTime);
+    pad1.connect(pad1Gain);
+    pad1Gain.connect(masterGain);
+    pad1.start();
+
+    const pad2 = ctx.createOscillator();
+    const pad2Gain = ctx.createGain();
+    pad2.type = "sine";
+    pad2.frequency.setValueAtTime(82.41, ctx.currentTime);
+    pad2Gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    pad2.connect(pad2Gain);
+    pad2Gain.connect(masterGain);
+    pad2.start();
+
+    const pad3 = ctx.createOscillator();
+    const pad3Gain = ctx.createGain();
+    pad3.type = "triangle";
+    pad3.frequency.setValueAtTime(110, ctx.currentTime);
+    pad3Gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    pad3.connect(pad3Gain);
+    pad3Gain.connect(masterGain);
+    pad3.start();
+
+    const lfo = ctx.createOscillator();
+    const lfoGain = ctx.createGain();
+    lfo.type = "sine";
+    lfo.frequency.setValueAtTime(0.08, ctx.currentTime);
+    lfoGain.gain.setValueAtTime(8, ctx.currentTime);
+    lfo.connect(lfoGain);
+    lfoGain.connect(pad2.frequency);
+    lfo.start();
+
+    const noiseLen = ctx.sampleRate * 4;
+    const noiseBuf = ctx.createBuffer(1, noiseLen, ctx.sampleRate);
+    const noiseData = noiseBuf.getChannelData(0);
+    for (let i = 0; i < noiseLen; i++) {
+      noiseData[i] = (Math.random() * 2 - 1);
+    }
+    const noiseSrc = ctx.createBufferSource();
+    noiseSrc.buffer = noiseBuf;
+    noiseSrc.loop = true;
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.setValueAtTime(200, ctx.currentTime);
+    noiseFilter.Q.setValueAtTime(0.5, ctx.currentTime);
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.4, ctx.currentTime);
+    noiseSrc.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(masterGain);
+    noiseSrc.start();
+
+    ambientNodesRef.current = {
+      stop: () => {
+        const now = ctx.currentTime;
+        masterGain.gain.linearRampToValueAtTime(0, now + 1);
+        setTimeout(() => {
+          pad1.stop(); pad2.stop(); pad3.stop(); lfo.stop(); noiseSrc.stop();
+          pad1.disconnect(); pad2.disconnect(); pad3.disconnect();
+          lfo.disconnect(); noiseSrc.disconnect(); masterGain.disconnect();
+        }, 1200);
+      }
+    };
+  }, [getCtx]);
+
+  const stopAmbient = useCallback(() => {
+    if (ambientNodesRef.current) {
+      ambientNodesRef.current.stop();
+      ambientNodesRef.current = null;
+    }
+  }, []);
+
   const toggleSound = useCallback(() => {
     setSoundOn(prev => {
       const next = !prev;
       soundEnabledRef.current = next;
-      if (next) getCtx();
+      if (next) {
+        getCtx();
+        startAmbient();
+      } else {
+        stopAmbient();
+      }
       return next;
     });
-  }, [getCtx]);
+  }, [getCtx, startAmbient, stopAmbient]);
 
   const playTransition = useCallback(() => {
     if (!soundEnabledRef.current) return;
     const ctx = getCtx();
+
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.connect(gain);
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(800, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(2400, ctx.currentTime + 0.2);
+    osc.connect(filter);
+    filter.connect(gain);
     gain.connect(ctx.destination);
     osc.type = "sine";
-    osc.frequency.setValueAtTime(600, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.15);
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    osc.frequency.setValueAtTime(440, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.25);
+    gain.gain.setValueAtTime(0.07, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.2);
+    osc.stop(ctx.currentTime + 0.3);
+
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.type = "triangle";
+    osc2.frequency.setValueAtTime(660, ctx.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(1320, ctx.currentTime + 0.2);
+    gain2.gain.setValueAtTime(0.03, ctx.currentTime);
+    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+    osc2.start(ctx.currentTime);
+    osc2.stop(ctx.currentTime + 0.25);
   }, [getCtx]);
 
   const playItemPop = useCallback(() => {
@@ -97,11 +205,14 @@ function useAudioEngine() {
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.type = "sine";
-    osc.frequency.setValueAtTime(800 + Math.random() * 400, ctx.currentTime);
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+    const baseFreq = 600 + Math.random() * 200;
+    osc.frequency.setValueAtTime(baseFreq, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.5, ctx.currentTime + 0.04);
+    osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.2, ctx.currentTime + 0.12);
+    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.1);
+    osc.stop(ctx.currentTime + 0.15);
   }, [getCtx]);
 
   const playBlastOff = useCallback(() => {
@@ -113,41 +224,65 @@ function useAudioEngine() {
     osc1.connect(gain1);
     gain1.connect(ctx.destination);
     osc1.type = "sawtooth";
-    osc1.frequency.setValueAtTime(200, ctx.currentTime);
-    osc1.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.6);
-    gain1.gain.setValueAtTime(0.06, ctx.currentTime);
-    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+    osc1.frequency.setValueAtTime(120, ctx.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.3);
+    osc1.frequency.exponentialRampToValueAtTime(1800, ctx.currentTime + 1.2);
+    gain1.gain.setValueAtTime(0.05, ctx.currentTime);
+    gain1.gain.linearRampToValueAtTime(0.08, ctx.currentTime + 0.4);
+    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.4);
     osc1.start(ctx.currentTime);
-    osc1.stop(ctx.currentTime + 0.8);
+    osc1.stop(ctx.currentTime + 1.4);
 
     const osc2 = ctx.createOscillator();
     const gain2 = ctx.createGain();
     osc2.connect(gain2);
     gain2.connect(ctx.destination);
     osc2.type = "sine";
-    osc2.frequency.setValueAtTime(400, ctx.currentTime + 0.1);
-    osc2.frequency.exponentialRampToValueAtTime(2000, ctx.currentTime + 0.7);
-    gain2.gain.setValueAtTime(0.05, ctx.currentTime + 0.1);
-    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
-    osc2.start(ctx.currentTime + 0.1);
-    osc2.stop(ctx.currentTime + 0.9);
+    osc2.frequency.setValueAtTime(220, ctx.currentTime + 0.15);
+    osc2.frequency.exponentialRampToValueAtTime(2200, ctx.currentTime + 1.2);
+    gain2.gain.setValueAtTime(0.04, ctx.currentTime + 0.15);
+    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.3);
+    osc2.start(ctx.currentTime + 0.15);
+    osc2.stop(ctx.currentTime + 1.3);
 
-    const bufferSize = ctx.sampleRate * 0.5;
-    const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = noiseBuffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = (Math.random() * 2 - 1) * 0.3;
+    const rumbleLen = ctx.sampleRate * 1.2;
+    const rumbleBuf = ctx.createBuffer(1, rumbleLen, ctx.sampleRate);
+    const rumbleData = rumbleBuf.getChannelData(0);
+    for (let i = 0; i < rumbleLen; i++) {
+      rumbleData[i] = (Math.random() * 2 - 1);
     }
-    const noise = ctx.createBufferSource();
-    const noiseGain = ctx.createGain();
-    noise.buffer = noiseBuffer;
-    noise.connect(noiseGain);
-    noiseGain.connect(ctx.destination);
-    noiseGain.gain.setValueAtTime(0.03, ctx.currentTime);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-    noise.start(ctx.currentTime);
-    noise.stop(ctx.currentTime + 0.5);
+    const rumble = ctx.createBufferSource();
+    rumble.buffer = rumbleBuf;
+    const rumbleFilter = ctx.createBiquadFilter();
+    rumbleFilter.type = "lowpass";
+    rumbleFilter.frequency.setValueAtTime(150, ctx.currentTime);
+    rumbleFilter.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 1.0);
+    const rumbleGain = ctx.createGain();
+    rumbleGain.gain.setValueAtTime(0.06, ctx.currentTime);
+    rumbleGain.gain.linearRampToValueAtTime(0.09, ctx.currentTime + 0.3);
+    rumbleGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.3);
+    rumble.connect(rumbleFilter);
+    rumbleFilter.connect(rumbleGain);
+    rumbleGain.connect(ctx.destination);
+    rumble.start(ctx.currentTime);
+    rumble.stop(ctx.currentTime + 1.3);
+
+    const chime = ctx.createOscillator();
+    const chimeGain = ctx.createGain();
+    chime.connect(chimeGain);
+    chimeGain.connect(ctx.destination);
+    chime.type = "sine";
+    chime.frequency.setValueAtTime(1047, ctx.currentTime + 0.5);
+    chimeGain.gain.setValueAtTime(0, ctx.currentTime);
+    chimeGain.gain.linearRampToValueAtTime(0.06, ctx.currentTime + 0.55);
+    chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+    chime.start(ctx.currentTime + 0.5);
+    chime.stop(ctx.currentTime + 1.5);
   }, [getCtx]);
+
+  useEffect(() => {
+    return () => { stopAmbient(); };
+  }, [stopAmbient]);
 
   return { soundOn, toggleSound, playTransition, playItemPop, playBlastOff };
 }
