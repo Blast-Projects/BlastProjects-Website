@@ -175,7 +175,7 @@ export function Hero() {
           <Button 
             size="lg" 
             onClick={() => scrollToSection("#contact")}
-            className="gap-2 bg-white text-black border-white/80 hover:bg-white/90"
+            className="gap-2 bg-black dark:bg-white text-white dark:text-black border-black/80 dark:border-white/80"
             data-testid="button-book-consultation"
           >
             Get Started
