@@ -182,21 +182,21 @@ export default function Demo() {
               >
                 {slide.title}
               </motion.h2>
-              <div className="flex flex-wrap items-center justify-center gap-8">
+              <div className="flex flex-wrap items-center justify-center gap-12">
                 {(slide.projects as { name: string; logo: string }[])?.map((project, i) => (
                   <motion.div
                     key={project.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={i < itemIndex ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-center gap-4 px-8 py-6 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30"
+                    className="flex flex-col items-center gap-3"
                   >
                     <img
                       src={project.logo}
                       alt={project.name}
-                      className="h-14 w-auto object-contain"
+                      className="h-16 w-auto object-contain"
                     />
-                    <span className="text-lg font-medium text-white">{project.name}</span>
+                    <span className="text-base text-gray-400">{project.name}</span>
                   </motion.div>
                 ))}
               </div>
