@@ -7,13 +7,12 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { TrustConfidentiality } from "@/components/TrustConfidentiality";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { Starfield } from "@/components/Starfield";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen">
-      <div className="starfield-layer stars-small" />
-      <div className="starfield-layer stars-medium" />
-      <div className="starfield-layer stars-large" />
+      <Starfield />
       <div className="space-nebula" />
       <div className="relative z-10">
         <Header />
