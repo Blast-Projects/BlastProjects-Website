@@ -65,7 +65,7 @@ export function Header() {
             title={theme === "dark" ? "Switch to light" : "Switch to dark"}
             className="text-muted-foreground"
           >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} className="text-black" />}
           </Button>
           <Button 
             onClick={() => scrollToSection("#contact")}
@@ -84,7 +84,7 @@ export function Header() {
             data-testid="button-mobile-theme-toggle"
             className="text-muted-foreground"
           >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} className="text-black" />}
           </Button>
           <Button
             variant="ghost"
