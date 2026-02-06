@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { Rocket, Code, Palette, Zap, Calendar, CheckCircle } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Rocket, Code, Palette, Zap, Calendar, CheckCircle, Volume2, VolumeX } from "lucide-react";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
 import roxysBeautyLabLogo from "@assets/57FB4895-AA27-4B1B-8DD6-1F40EC2F6D3F_1769723626732.PNG";
@@ -52,6 +52,30 @@ const slides = [
 export default function Demo() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemIndex, setItemIndex] = useState(0);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = new Audio("/demo-music.mp3");
+    audio.loop = true;
+    audio.volume = 0.4;
+    audioRef.current = audio;
+    return () => {
+      audio.pause();
+      audio.src = "";
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (musicPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setMusicPlaying(!musicPlaying);
+  };
 
   useEffect(() => {
     const slide = slides[currentSlide];
@@ -65,7 +89,7 @@ export default function Demo() {
       const timer = setTimeout(() => setItemIndex(itemIndex + 1), 600);
       return () => clearTimeout(timer);
     } else {
-      const holdTime = slide.type === "intro" ? 4500 : 2500;
+      const holdTime = slide.type === "intro" ? 4000 : 2500;
       const timer = setTimeout(() => {
         if (currentSlide < slides.length - 1) {
           setCurrentSlide(currentSlide + 1);
@@ -269,6 +293,14 @@ export default function Demo() {
           )}
         </motion.div>
       </AnimatePresence>
+
+      <button
+        onClick={toggleMusic}
+        className="absolute top-6 right-6 z-20 p-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-gray-400 hover:text-purple-400 transition-colors"
+        data-testid="button-music-toggle"
+      >
+        {musicPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
+      </button>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
