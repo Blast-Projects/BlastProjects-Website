@@ -84,82 +84,74 @@ export default function Demo() {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a1a] via-black to-[#05050f]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
 
-      <div className="absolute -left-10 -top-10 h-[500px] w-[500px] rounded-full bg-purple-800/30 blur-[150px]" />
-      <div className="absolute -right-10 -top-10 h-[400px] w-[400px] rounded-full bg-violet-800/25 blur-[120px]" />
-      <div className="absolute -left-10 bottom-0 h-[400px] w-[500px] rounded-full bg-purple-900/25 blur-[130px]" />
-      <div className="absolute -right-10 bottom-0 h-[350px] w-[400px] rounded-full bg-violet-900/20 blur-[120px]" />
+      <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-purple-900/20 blur-[100px]" />
+      <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-violet-900/15 blur-[80px]" />
 
       <div className="absolute inset-0">
-        {[...Array(25)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={`particle-${i}`}
-            className="absolute h-1 w-1 rounded-full bg-purple-400/40"
+            className="absolute h-1 w-1 rounded-full bg-purple-400/30"
             style={{
-              left: `${5 + (i * 3.8)}%`,
-              top: `${5 + (i * 3.7) % 85}%`,
+              left: `${10 + (i * 4.5)}%`,
+              top: `${5 + (i * 3.2) % 80}%`,
             }}
             animate={{
-              y: [0, -25, 0],
-              opacity: [0.3, 0.7, 0.3],
+              y: [0, -20, 0],
+              opacity: [0.2, 0.5, 0.2],
             }}
             transition={{
               duration: 4 + (i % 3),
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.25,
+              delay: i * 0.3,
             }}
           />
         ))}
       </div>
 
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 opacity-60">
         <motion.div
-          className="absolute left-[5%] top-[20%] h-[130%] w-56 rotate-[25deg] bg-gradient-to-r from-transparent via-purple-500/30 to-transparent blur-3xl"
-          animate={{ x: [0, 30, 0], opacity: [0.3, 0.5, 0.3] }}
+          className="absolute left-[10%] top-[30%] h-[120%] w-48 rotate-[25deg] bg-gradient-to-r from-transparent via-purple-500/25 to-transparent blur-3xl"
+          animate={{ x: [0, 30, 0], opacity: [0.2, 0.35, 0.2] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute left-[25%] top-[15%] h-[130%] w-72 rotate-[25deg] bg-gradient-to-r from-transparent via-violet-500/25 to-transparent blur-3xl"
-          animate={{ x: [0, 40, 0], opacity: [0.25, 0.45, 0.25] }}
+          className="absolute left-[25%] top-[20%] h-[120%] w-64 rotate-[25deg] bg-gradient-to-r from-transparent via-violet-500/20 to-transparent blur-3xl"
+          animate={{ x: [0, 40, 0], opacity: [0.15, 0.3, 0.15] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
         <motion.div
-          className="absolute left-[45%] top-[20%] h-[130%] w-64 rotate-[25deg] bg-gradient-to-r from-transparent via-fuchsia-500/20 to-transparent blur-3xl"
-          animate={{ x: [0, 35, 0], opacity: [0.2, 0.4, 0.2] }}
+          className="absolute left-[40%] top-[25%] h-[120%] w-56 rotate-[25deg] bg-gradient-to-r from-transparent via-fuchsia-500/15 to-transparent blur-3xl"
+          animate={{ x: [0, 35, 0], opacity: [0.1, 0.25, 0.1] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
-        <motion.div
-          className="absolute left-[65%] top-[25%] h-[120%] w-48 rotate-[25deg] bg-gradient-to-r from-transparent via-purple-400/15 to-transparent blur-3xl"
-          animate={{ x: [0, 25, 0], opacity: [0.15, 0.35, 0.15] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
       </div>
 
       <motion.div
-        className="absolute left-1/4 top-1/2 h-96 w-96 rounded-full bg-purple-500/15 blur-[150px]"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
+        className="absolute left-1/4 top-1/2 h-80 w-80 rounded-full bg-purple-500/10 blur-[120px]"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.15, 0.1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-1/4 top-1/3 h-80 w-80 rounded-full bg-purple-600/15 blur-[130px]"
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.12, 0.22, 0.12] }}
+        className="absolute right-1/4 top-1/3 h-72 w-72 rounded-full bg-purple-600/10 blur-[120px]"
+        animate={{ scale: [1.1, 1, 1.1], opacity: [0.08, 0.15, 0.08] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-1/4 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-violet-500/12 blur-[120px]"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+        className="absolute bottom-1/4 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-violet-500/8 blur-[100px]"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.12, 0.05] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 800px 500px at 15% 20%, rgba(139, 92, 246, 0.15), transparent),
-            radial-gradient(ellipse 700px 450px at 85% 60%, rgba(124, 58, 237, 0.12), transparent),
-            radial-gradient(ellipse 600px 400px at 50% 90%, rgba(167, 139, 250, 0.1), transparent),
-            radial-gradient(ellipse 500px 350px at 70% 10%, rgba(139, 92, 246, 0.08), transparent)
+            radial-gradient(ellipse 600px 400px at 15% 20%, rgba(139, 92, 246, 0.08), transparent),
+            radial-gradient(ellipse 500px 350px at 85% 60%, rgba(124, 58, 237, 0.06), transparent),
+            radial-gradient(ellipse 400px 300px at 50% 90%, rgba(167, 139, 250, 0.05), transparent)
           `,
         }}
       />
