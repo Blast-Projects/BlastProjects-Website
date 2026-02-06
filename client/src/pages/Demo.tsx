@@ -65,6 +65,7 @@ export default function Demo() {
       const timer = setTimeout(() => setItemIndex(itemIndex + 1), 600);
       return () => clearTimeout(timer);
     } else {
+      const holdTime = slide.type === "intro" ? 4500 : 2500;
       const timer = setTimeout(() => {
         if (currentSlide < slides.length - 1) {
           setCurrentSlide(currentSlide + 1);
@@ -75,7 +76,7 @@ export default function Demo() {
             setItemIndex(0);
           }, 4000);
         }
-      }, 2500);
+      }, holdTime);
       return () => clearTimeout(timer);
     }
   }, [currentSlide, itemIndex]);
