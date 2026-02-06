@@ -198,44 +198,46 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <motion.div 
-            className="flex items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            data-testid="feature-production-ready"
-          >
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10">
-              <Rocket size={14} className="text-accent" />
-            </div>
-            <span className="text-sm font-medium">Production-Ready Builds</span>
-          </motion.div>
-          
-          <motion.div 
-            className="flex items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            data-testid="feature-founder-led"
-          >
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10">
-              <User size={14} className="text-accent" />
-            </div>
-            <span className="text-sm font-medium">Founder-Led Development</span>
-          </motion.div>
-          
-          <motion.div 
-            className="flex items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            data-testid="feature-satisfaction"
-          >
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10">
-              <Heart size={14} className="text-accent" />
-            </div>
-            <span className="text-sm font-medium">100% Client Satisfaction</span>
-          </motion.div>
+          {[
+            { icon: Rocket, label: "Production-Ready Builds", testId: "feature-production-ready", delay: 0.5 },
+            { icon: User, label: "Founder-Led Development", testId: "feature-founder-led", delay: 0.6 },
+            { icon: Heart, label: "100% Client Satisfaction", testId: "feature-satisfaction", delay: 0.7 },
+          ].map((item, i) => (
+            <motion.div
+              key={item.testId}
+              className="group relative flex cursor-default items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm transition-colors duration-300 hover:border-accent/50 hover:bg-accent/5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: 1,
+                y: [0, -4, 0],
+              }}
+              transition={{
+                opacity: { duration: 0.5, delay: item.delay },
+                y: {
+                  duration: 3 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: item.delay + i * 0.4,
+                },
+              }}
+              data-testid={item.testId}
+            >
+              <div className="absolute inset-0 rounded-full bg-accent/0 blur-xl transition-all duration-300 group-hover:bg-accent/10" />
+              <motion.div
+                className="relative flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent/20 to-purple-500/10 transition-all duration-300 group-hover:from-accent/30 group-hover:to-purple-500/20"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{
+                  duration: 4 + i,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.8,
+                }}
+              >
+                <item.icon size={14} className="text-accent transition-transform duration-300 group-hover:scale-110" />
+              </motion.div>
+              <span className="relative text-sm font-medium">{item.label}</span>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
