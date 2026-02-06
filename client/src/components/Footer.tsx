@@ -1,4 +1,4 @@
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiX, SiInstagram } from "react-icons/si";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useTheme } from "./ThemeProvider";
@@ -19,6 +19,7 @@ const footerLinks = {
     { label: "GitHub", href: "#", icon: SiGithub },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/blastprojects", icon: SiLinkedin },
     { label: "X", href: "https://x.com/blastprojects?s=21", icon: SiX },
+    { label: "Instagram", href: "https://www.instagram.com/blast.projects", icon: SiInstagram },
   ],
 };
 
