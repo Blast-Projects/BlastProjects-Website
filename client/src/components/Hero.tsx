@@ -164,7 +164,7 @@ export function Hero() {
         >From idea to launch. No fluff, just software that works.</motion.p>
 
         <motion.div 
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
