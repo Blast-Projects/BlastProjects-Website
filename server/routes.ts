@@ -19,7 +19,7 @@ export async function registerRoutes(
       
       if (resend) {
         try {
-          await resend.emails.send({
+          const emailResult = await resend.emails.send({
             from: "BlastProjects <notifications@blastprojects.com>",
             to: ["hello@blastprojects.com"],
             subject: `New Consultation Request from ${validatedData.name}`,
@@ -34,7 +34,7 @@ export async function registerRoutes(
               <p style="color: #666; font-size: 12px;">This message was sent from the BlastProjects contact form.</p>
             `,
           });
-          console.log("Email notification sent successfully");
+          console.log("Resend response:", JSON.stringify(emailResult));
         } catch (emailError) {
           console.error("Failed to send email notification:", emailError);
         }
