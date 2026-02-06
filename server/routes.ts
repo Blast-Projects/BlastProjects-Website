@@ -40,8 +40,13 @@ export async function registerRoutes(
               to: [validatedData.email],
               subject: "We received your message - BlastProjects",
               html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                  <h2 style="color: #8B5CF6;">Thanks for reaching out, ${validatedData.name}!</h2>
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+                  <div style="text-align: center; padding: 32px 0 24px 0;">
+                    <a href="https://blastprojects.com">
+                      <img src="https://blastprojects.com/blastprojects-logo.png" alt="BlastProjects" style="height: 48px; width: auto;" />
+                    </a>
+                  </div>
+                  <h2 style="color: #8B5CF6; margin-top: 0;">Thanks for reaching out, ${validatedData.name}!</h2>
                   <p>We've received your message and will get back to you within 24 hours.</p>
                   <div style="background: #f9f9f9; border-left: 4px solid #8B5CF6; padding: 16px; margin: 24px 0; border-radius: 4px;">
                     <p style="margin: 0 0 8px 0;"><strong>Your message:</strong></p>
