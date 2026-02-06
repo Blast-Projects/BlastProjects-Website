@@ -76,7 +76,16 @@ export function Header() {
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-1 md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            data-testid="button-mobile-theme-toggle"
+            className="text-muted-foreground"
+          >
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+          </Button>
           <Button
             variant="ghost"
             size="icon"
@@ -102,15 +111,6 @@ export function Header() {
                 {link.label}
               </Button>
             ))}
-            <Button
-              variant="ghost"
-              className="justify-start mt-2 text-muted-foreground"
-              onClick={toggleTheme}
-              data-testid="button-mobile-theme-toggle"
-            >
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-              <span className="ml-2">{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
-            </Button>
             <Button 
               className="mt-2 bg-accent border-accent-border"
               onClick={() => scrollToSection("#contact")}
