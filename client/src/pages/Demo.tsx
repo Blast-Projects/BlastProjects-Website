@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { Rocket, Code, Palette, Zap, Calendar, CheckCircle } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Rocket, Code, Palette, Zap, Calendar, CheckCircle, Volume2, VolumeX } from "lucide-react";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
 import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
 import roxysBeautyLabLogo from "@assets/57FB4895-AA27-4B1B-8DD6-1F40EC2F6D3F_1769723626732.PNG";
@@ -49,9 +49,131 @@ const slides = [
   },
 ];
 
+function useAudioEngine() {
+  const ctxRef = useRef<AudioContext | null>(null);
+  const soundEnabledRef = useRef(false);
+  const [soundOn, setSoundOn] = useState(false);
+
+  const getCtx = useCallback(() => {
+    if (!ctxRef.current) {
+      ctxRef.current = new AudioContext();
+    }
+    if (ctxRef.current.state === "suspended") {
+      ctxRef.current.resume();
+    }
+    return ctxRef.current;
+  }, []);
+
+  const toggleSound = useCallback(() => {
+    setSoundOn(prev => {
+      const next = !prev;
+      soundEnabledRef.current = next;
+      if (next) getCtx();
+      return next;
+    });
+  }, [getCtx]);
+
+  const playTransition = useCallback(() => {
+    if (!soundEnabledRef.current) return;
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(600, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.15);
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.2);
+  }, [getCtx]);
+
+  const playItemPop = useCallback(() => {
+    if (!soundEnabledRef.current) return;
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(800 + Math.random() * 400, ctx.currentTime);
+    gain.gain.setValueAtTime(0.04, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.1);
+  }, [getCtx]);
+
+  const playBlastOff = useCallback(() => {
+    if (!soundEnabledRef.current) return;
+    const ctx = getCtx();
+
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.type = "sawtooth";
+    osc1.frequency.setValueAtTime(200, ctx.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.6);
+    gain1.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+    osc1.start(ctx.currentTime);
+    osc1.stop(ctx.currentTime + 0.8);
+
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.type = "sine";
+    osc2.frequency.setValueAtTime(400, ctx.currentTime + 0.1);
+    osc2.frequency.exponentialRampToValueAtTime(2000, ctx.currentTime + 0.7);
+    gain2.gain.setValueAtTime(0.05, ctx.currentTime + 0.1);
+    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
+    osc2.start(ctx.currentTime + 0.1);
+    osc2.stop(ctx.currentTime + 0.9);
+
+    const bufferSize = ctx.sampleRate * 0.5;
+    const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * 0.3;
+    }
+    const noise = ctx.createBufferSource();
+    const noiseGain = ctx.createGain();
+    noise.buffer = noiseBuffer;
+    noise.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noiseGain.gain.setValueAtTime(0.03, ctx.currentTime);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+    noise.start(ctx.currentTime);
+    noise.stop(ctx.currentTime + 0.5);
+  }, [getCtx]);
+
+  return { soundOn, toggleSound, playTransition, playItemPop, playBlastOff };
+}
+
 export default function Demo() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemIndex, setItemIndex] = useState(0);
+  const { soundOn, toggleSound, playTransition, playItemPop, playBlastOff } = useAudioEngine();
+  const prevSlideRef = useRef(0);
+
+  useEffect(() => {
+    if (currentSlide !== prevSlideRef.current) {
+      if (slides[currentSlide].type === "cta") {
+        playBlastOff();
+      } else {
+        playTransition();
+      }
+      prevSlideRef.current = currentSlide;
+    }
+  }, [currentSlide, playTransition, playBlastOff]);
+
+  useEffect(() => {
+    if (itemIndex > 0) {
+      playItemPop();
+    }
+  }, [itemIndex, playItemPop]);
 
   useEffect(() => {
     const slide = slides[currentSlide];
@@ -268,6 +390,14 @@ export default function Demo() {
           )}
         </motion.div>
       </AnimatePresence>
+
+      <button
+        onClick={toggleSound}
+        className="absolute top-6 right-6 z-20 p-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-gray-400 hover:text-purple-400 transition-colors"
+        data-testid="button-sound-toggle"
+      >
+        {soundOn ? <Volume2 size={20} /> : <VolumeX size={20} />}
+      </button>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
