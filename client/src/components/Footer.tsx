@@ -16,7 +16,7 @@ const footerLinks = {
     { label: "Policies", href: "/policies" },
   ],
   social: [
-    { label: "GitHub", href: "#", icon: SiGithub },
+    { label: "GitHub", href: "https://github.com/Blast-Projects", icon: SiGithub },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/blastprojects", icon: SiLinkedin },
     { label: "X", href: "https://x.com/blastprojects?s=21", icon: SiX },
     { label: "Instagram", href: "https://www.instagram.com/blast.projects", icon: SiInstagram },
