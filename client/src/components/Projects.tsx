@@ -85,7 +85,6 @@ export function Projects() {
     <section id="projects" className="relative py-24 md:py-32">
       {/* Background decoration */}
       <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-accent/5 blur-[100px]" />
-      
       <div className="mx-auto max-w-7xl px-6">
         <motion.div 
           className="mb-16 max-w-2xl"
@@ -98,10 +97,7 @@ export function Projects() {
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl" data-testid="text-projects-title">
             Projects we've brought to life
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground" data-testid="text-projects-description">
-            Real applications built from the ground up, deployed live, and running with 
-            full integrations. Here's what we've created for our clients.
-          </p>
+          <p className="mt-4 text-lg text-muted-foreground" data-testid="text-projects-description">Real applications built from the ground up, deployed live, and running with full integrations. Here's what we've created.</p>
         </motion.div>
 
         <motion.div 
