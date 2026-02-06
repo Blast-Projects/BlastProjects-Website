@@ -134,7 +134,6 @@ export function Hero() {
           }}
         />
       </div>
-
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-6 py-28 text-center md:py-32 lg:py-36">
         <motion.h1 
           className="max-w-4xl text-4xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl"
@@ -162,9 +161,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
           data-testid="text-hero-supporting"
-        >
-          From idea to launch — no fluff, just software that works.
-        </motion.p>
+        >From idea to launch. No fluff, just software that works.</motion.p>
 
         <motion.div 
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row"
