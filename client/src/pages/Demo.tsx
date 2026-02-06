@@ -191,11 +191,13 @@ export default function Demo() {
                     transition={{ duration: 0.4 }}
                     className="flex flex-col items-center gap-3"
                   >
-                    <img
-                      src={project.logo}
-                      alt={project.name}
-                      className="h-16 w-auto object-contain"
-                    />
+                    <div className="flex h-14 w-40 items-center justify-center">
+                      <img
+                        src={project.logo}
+                        alt={project.name}
+                        className="max-h-14 max-w-[160px] object-contain"
+                      />
+                    </div>
                     <span className="text-base text-gray-400">{project.name}</span>
                   </motion.div>
                 ))}
