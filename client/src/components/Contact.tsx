@@ -138,20 +138,35 @@ export function Contact() {
             </div>
 
             <motion.div 
-              className="mt-10 rounded-lg border border-border/50 bg-card/30 p-6 backdrop-blur-sm" 
+              className="mt-10 rounded-xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-transparent p-6 backdrop-blur-sm" 
               data-testid="card-why-work-with-us"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <h4 className="font-medium">Why work with us?</h4>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <li data-testid="text-benefit-1">Affordable rates without compromising quality</li>
-                <li data-testid="text-benefit-2">Real experience deploying production apps</li>
-                <li data-testid="text-benefit-3">We handle ALL the technical complexity</li>
-                <li data-testid="text-benefit-4">Transparent communication throughout</li>
-                <li data-testid="text-benefit-5">Ongoing support after launch</li>
+              <h4 className="text-lg font-semibold text-foreground">Why work with us?</h4>
+              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-center gap-3" data-testid="text-benefit-1">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-xs">✓</span>
+                  Affordable rates without compromising quality
+                </li>
+                <li className="flex items-center gap-3" data-testid="text-benefit-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-xs">✓</span>
+                  Real experience deploying production apps
+                </li>
+                <li className="flex items-center gap-3" data-testid="text-benefit-3">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-xs">✓</span>
+                  We handle all the technical complexity
+                </li>
+                <li className="flex items-center gap-3" data-testid="text-benefit-4">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-xs">✓</span>
+                  Transparent communication throughout
+                </li>
+                <li className="flex items-center gap-3" data-testid="text-benefit-5">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 text-xs">✓</span>
+                  Ongoing support after launch
+                </li>
               </ul>
             </motion.div>
           </motion.div>
