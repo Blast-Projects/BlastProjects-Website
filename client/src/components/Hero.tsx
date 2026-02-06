@@ -205,9 +205,10 @@ export function Hero() {
           ].map((item) => (
             <motion.div
               key={item.testId}
-              className="group relative flex cursor-default items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm transition-all duration-300 hover:border-accent/50 hover:bg-accent/5 hover:scale-105"
+              className="group relative flex cursor-default items-center gap-3 rounded-full border border-border/40 bg-card/30 px-5 py-2.5 backdrop-blur-sm transition-colors duration-300 hover:border-accent/50 hover:bg-accent/5"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5, delay: item.delay }}
               data-testid={item.testId}
             >
