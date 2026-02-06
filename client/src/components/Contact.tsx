@@ -172,7 +172,7 @@ export function Contact() {
           </motion.div>
 
           <motion.div
-            className="lg:mt-12"
+            className="lg:mt-14"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
