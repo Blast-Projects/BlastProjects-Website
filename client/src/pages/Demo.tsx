@@ -35,9 +35,9 @@ const slides = [
     type: "projects",
     title: "Our Work",
     projects: [
-      { name: "SnapTagSync", logo: snapTagSyncLogo },
-      { name: "Roxy's Beauty Lab", logo: roxysBeautyLabLogo },
-      { name: "Vibez", logo: vibezLogo },
+      { name: "SnapTagSync", logo: snapTagSyncLogo, logoClass: "max-h-14" },
+      { name: "Roxy's Beauty Lab", logo: roxysBeautyLabLogo, logoClass: "max-h-20" },
+      { name: "Vibez", logo: vibezLogo, logoClass: "max-h-14" },
     ],
   },
   {
@@ -183,7 +183,7 @@ export default function Demo() {
                 {slide.title}
               </motion.h2>
               <div className="flex flex-wrap items-center justify-center gap-12">
-                {(slide.projects as { name: string; logo: string }[])?.map((project, i) => (
+                {(slide.projects as { name: string; logo: string; logoClass: string }[])?.map((project, i) => (
                   <motion.div
                     key={project.name}
                     initial={{ opacity: 0, y: 20 }}
@@ -191,11 +191,11 @@ export default function Demo() {
                     transition={{ duration: 0.4 }}
                     className="flex flex-col items-center gap-3"
                   >
-                    <div className="flex h-14 w-40 items-center justify-center">
+                    <div className="flex h-20 w-40 items-center justify-center">
                       <img
                         src={project.logo}
                         alt={project.name}
-                        className="max-h-14 max-w-[160px] object-contain"
+                        className={`${project.logoClass} max-w-[160px] object-contain`}
                       />
                     </div>
                     <span className="text-base text-gray-400">{project.name}</span>
