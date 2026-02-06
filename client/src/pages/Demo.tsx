@@ -185,14 +185,14 @@ export default function Demo() {
               >
                 {slide.title}
               </motion.h2>
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
                 {slide.steps?.map((step, i) => (
                   <motion.div
                     key={step.label}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={i < itemIndex ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col items-center gap-3 p-6 rounded-xl bg-purple-500/10 border border-purple-500/20 min-w-[140px]"
+                    className="flex flex-col items-center gap-3 p-6 rounded-xl bg-purple-500/10 border border-purple-500/20 aspect-square justify-center"
                   >
                     <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
                       <step.icon size={24} />
