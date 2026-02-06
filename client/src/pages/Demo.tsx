@@ -2,6 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Rocket, Code, Palette, Zap, Calendar, CheckCircle } from "lucide-react";
 import blastProjectsLogoDark from "@assets/BlastProjects_Main_Logo_1770175061562.png";
+import snapTagSyncLogo from "@assets/SnapTagSync-Logo-WhiteSNAP-TransparentBackground_1769723696024.png";
+import roxysBeautyLabLogo from "@assets/57FB4895-AA27-4B1B-8DD6-1F40EC2F6D3F_1769723626732.PNG";
+import vibezLogo from "@assets/6797076_Main_Logo_1769723619802.png";
 
 const slides = [
   {
@@ -31,7 +34,11 @@ const slides = [
     id: 4,
     type: "projects",
     title: "Our Work",
-    projects: ["SnapTagSync", "Roxy's Beauty Lab", "Vibez"],
+    projects: [
+      { name: "SnapTagSync", logo: snapTagSyncLogo },
+      { name: "Roxy's Beauty Lab", logo: roxysBeautyLabLogo },
+      { name: "Vibez", logo: vibezLogo },
+    ],
   },
   {
     id: 5,
@@ -52,7 +59,7 @@ export default function Demo() {
     
     if (slide.type === "services") itemCount = slide.items?.length || 0;
     if (slide.type === "process") itemCount = slide.steps?.length || 0;
-    if (slide.type === "projects") itemCount = slide.projects?.length || 0;
+    if (slide.type === "projects") itemCount = (slide.projects as unknown[])?.length || 0;
 
     if (itemIndex < itemCount) {
       const timer = setTimeout(() => setItemIndex(itemIndex + 1), 600);
@@ -175,16 +182,21 @@ export default function Demo() {
               >
                 {slide.title}
               </motion.h2>
-              <div className="flex flex-wrap justify-center gap-6">
-                {slide.projects?.map((project, i) => (
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                {(slide.projects as { name: string; logo: string }[])?.map((project, i) => (
                   <motion.div
-                    key={project}
+                    key={project.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={i < itemIndex ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.4 }}
-                    className="px-8 py-4 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30 text-xl font-medium text-white"
+                    className="flex flex-col items-center gap-4 px-8 py-6 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-purple-500/30"
                   >
-                    {project}
+                    <img
+                      src={project.logo}
+                      alt={project.name}
+                      className="h-14 w-auto object-contain"
+                    />
+                    <span className="text-lg font-medium text-white">{project.name}</span>
                   </motion.div>
                 ))}
               </div>
